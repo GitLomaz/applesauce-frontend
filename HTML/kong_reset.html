@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../CSS/tooltipster.css" />
+		<script type="text/javascript" src="../JS/jquery.js"></script>
+		<script type="text/javascript" src="../JS/kong_reset.js"></script>
+		<script type="text/javascript" src="../JS/jquery.tooltipster.min.js"></script>
+		<script src='https://cdn1.kongregate.com/javascripts/kongregate_api.js'></script>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="google-site-verification" content="fDDhbDCOCakgZL99GmIzzBA7hAip7ydkzanN-3hLe3o" />
+		<title>Reset</title>
+		<link href="../gall/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../CSS/kong_main.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../gall/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+		<script type="text/javascript" src="../gall/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+	</head>
+	<body class="Splash" onunload="saveCookie()">
+		<div class="TopContainer">
+			<div id="splashWrapper" style="height:450px;">
+				<div id="loginBox" style="width:800px;height:660px;">
+					<div id="login" class="dialog" style="width:300px;height:50px;margin:0 auto;">
+						<p>Ascension Options</p>
+					</div>
+					<div id="diffPicker">
+						<div class="mouseover resetFilters diff" id="diffCasual" data-script="<strong>Casual Difficulty</strong> - Enemies are 50% weaker then normal, and all stored items are unlocked at level one.<br/><br/>Ideal for testing out new classes and builds." data-mod=".5">Casual</div>
+						<div class="mouseover resetFilters diff" id="diffEasy" data-script="<strong>Easy Difficulty</strong> - Enemies are 25% weaker then normal. <br/><br/>Ideal for new players and players not accustom to this style game." data-bonus2="<li>No reward.</li>" data-bonus="<li>One Permanent point into [stat].</li>" data-bonus3="<li>2 Permanent point into [stat].</li>" data-mod=".75">Easy</div>
+						<div class="mouseover resetFilters diff filtersClicked" id="diffNorm" data-script="<strong>Normal Difficulty</strong> - The default difficulty option, all enemies have default stats." data-bonus2="<li>One Permanent point into [stat].</li>" data-bonus="<li>Two Permanent points into [stat].</li>" data-bonus3="<li>Four Permanent points into [stat].</li><li>One Permanent point into Vitality.</li>" data-mod="1">Normal</div>
+						<div class="mouseover resetFilters diff" id="diffHard" data-script="<strong>Hard Difficulty</strong> - Enemies are 50% stronger then normal, several resets are reccomended before taking on this challange." data-bonus2="<li>One Permanent point into [stat].</li>" data-bonus="<li>Two Permanent points into [stat].</li><li>One permanent [class] skill point.</li>" data-bonus3="<li>Five Permanent points into [stat].</li><li>Two Permanent points into Vitality.</li><li>One permanent [class] skill point.</li>" data-mod="1.5">Hard</div>
+					</div>
+					<!--
+					<div id="corePicker">
+						<div class="mouseover core resetFilters filtersClicked" id="softcore" data-script="<strong>Softcore Difficulty</strong> - Death causes a 10% experence loss.">Softcore</div>
+						<div class="mouseover core resetFilters filtersLocked" id="hardcore" data-script="<strong>Hardcore Difficulty</strong> - Death is permanent.">Hardcore</div>
+					</div>
+					-->
+					<div id="classPicker">
+						<div class="mouseover classSelect unselected" id="pala" style="background-image: url(../images/portrits/Paladin.png);" data-script="
+							<strong>Paladin</strong> - Strong fighter class who depends on raw power and holy might to overcome his enemies.<br>
+							<em>Strength:</em> High physical damage and hit-points.<br>
+							<em>Weakness:</em> Easily hit, nearly no magical presence.<br><br>" data-bonus="<li>One Paladin reset chest.</li>" data-bonus3="<li>One Cursed Paladin reset chest.</li>">
+						</div>
+						<div class="mouseover classSelect unselected" id="sin" style="background-image: url(../images/portrits/Assassin.png);" data-script="
+							<strong>Assassin</strong> - A stealth killer who depends on his dexterity to avoid being hit and utilizes deadly poison.<br>
+							<em>Strength:</em> Very nimble, has access to strong poisons and potions<br>
+							<em>Weakness:</em> Low health, does not do well with heavy armour on<br><br>" data-bonus="<li>One Assassin reset chest.</li>" data-bonus3="<li>One Cursed Assassin reset chest.</li>">
+						</div>
+						<div class="mouseover classSelect unselected" id="warlock" style="background-image: url(../images/portrits/Warlock.png);" data-script="
+							<strong>Warlock</strong> - An enchanter that can implement dark magic to protect himself and destroy his opponents.<br>
+							<em>Strength:</em> Strong magic attacks and shields to both attack and defend<br>
+							<em>Weakness:</em> Rendered nearly useless without their magic powers" data-bonus="<li>One Warlock reset chest.</li>" data-bonus3="<li>One Cursed Warlock reset chest.</li>">
+						</div>
+					</div>
+					<div id="resetInfo"></div>
+					<div class="button" id="finishReset">Ascend</div>
+					<div id="script"></div>
+					<div id="runBonus"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

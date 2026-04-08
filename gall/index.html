@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Kal-Rul Gameplay Shots</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+		<script src="js/jquery.js"></script>
+		<link rel="stylesheet" href="source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+		<script type="text/javascript" src="source/jquery.fancybox.pack.js?v=2.1.5"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$(".fancybox").fancybox();
+				ajaxCall('text', 'counter');
+			});
+			function ajaxCall(){
+			$.ajax({
+				type: "POST",
+				dataType: "text",
+				data: {call: "counter"},
+				url: "https://applesauce-838900413941.us-west1.run.app/AJAX.php",
+			});
+}
+		</script>
+	</head>
+	<body style=" background-image:url(../images/layout/wat3.png);">
+		<div id="page-main" style="margin-top: 20px;">
+			<div class="container feature">
+				<div class="row">
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/achievements.png" title="A view of the achievements you can unlock as you progress."><img src="images/achievements.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/best.png" title="A detailed log of everything you have killed, and their known stats (more stats unlock as you kill more)."><img src="images/best.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/cave.png" title="The shadowing effects of being on an underground map."><img src="images/cave.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/character.png" title="The current character panel, displaying useful information."><img src="images/character.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/combatBash.png" title="A skill being used in combat against an opponent."><img src="images/combatBash.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/equipment.png" title="A filterable page for sorting, and equipping gear you've found or bought."><img src="images/equipment.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/equipmentShop.png" title="A vendor that sells equipment for you to buy."><img src="images/equipmentShop.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/farm.png" title="A simple farm with easy monsters and a couple quests."><img src="images/farm.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/graveyard.png" title="The graveyard- Where you end up if you die."><img src="images/graveyard.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/potionShop.png" title="A vendor that sells usable and combat items."><img src="images/potionShop.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/questLog.png" title="A log of all completed and in progress quests."><img src="images/questLog.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/quest.png" title="A quest display that appears when you talk to a quest NPC."><img src="images/quest.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/skillTree.png" title="The skill tree for the Marauder class with some skill points allocated."><img src="images/skillTree.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/top10.png" title="A random top 10 board to see your status against fellow players in different areas."><img src="images/top10.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/useSkill.png" title="A skill being used by the player outside combat."><img src="images/useSkill.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/zoneMap.png" title="A smaller scale view of the map you are currently on."><img src="images/zoneMap.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/spawnOn.png" title="A teleblisk used for travel being activated on first time into a zone."><img src="images/spawnOn.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+					<div class="col-sm-3" style="text-align:center; padding-bottom: 20px; min-height:125px;">
+						<a class="fancybox gallery" rel="group" href="images/spawnPoint.png" title="A teleblisk screen where you can either set your respawn point or travel elswhere."><img src="images/spawnPoint.png" style="width:200px" alt="asdasd" /></a>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

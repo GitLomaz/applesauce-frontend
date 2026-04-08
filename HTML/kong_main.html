@@ -1,0 +1,1342 @@
+	<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<script type="text/javascript" src="../JS/jquery.js"></script>
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<script type="text/javascript" src="../JS/kong_main_new.js"></script>
+		<script type="text/javascript" src="../JS/phaser.js"></script>
+		<link rel="stylesheet" type="text/css" href="../CSS/tooltipster.css" />
+		<script type="text/javascript" src="../JS/jquery.tooltipster.min.js"></script>
+		<script type="text/javascript" src="../JS/jquery.scrollTo.js"></script>
+		<link href="../CSS/scroll.css" rel="stylesheet" type="text/css">
+		<link href="../CSS/jquery.scrollbar.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="../JS/jquery.scrollbar.min.js"></script>
+		<link rel="stylesheet" href="../gall/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+		<script type="text/javascript" src="../gall/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+		<title>Rise of the Kal-rul</title>
+		<link href="../CSS/kong_main.css" rel="stylesheet" type="text/css">
+
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-87208405-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+	</head>
+	<body class="Splash" onunload="saveCookie()">
+		<div class="InnerBox" style="height:100% !important; max-height: 750px;">
+			<div class="main2" style="height:100% !important">
+				<div class="left shiftingColor borderBlue" style="height:100% !important; width:189px !important; max-width:193px position:absolute; top:0; left:0; border-right:4px solid">
+					<div class="left-column">
+						<div class="button" id='mapBtn'>Map</div>
+						<div class="button" id='charBtn'>Character</div>
+						<div class="button" id='skillBtn'>Skills</div>
+						<div class="button" id='invBtn'>Inventory</div>
+						<div class="button" id='craftBtn'>Crafting</div>
+						<div class="button" id='achBtn'>Achievements</div>
+						<div class="button" id='questBtn'>Quest Log</div>
+						<a class="fancyboxmap" style="text-decoration:none" href="#mapImage">
+							<div class="button" id='zoneBtn'>Zone Map</div>
+						</a>
+						<a class="fancyboxquest" style="text-decoration:none" href="#dailyQuestPanel">
+							<div class="button" id='dailyBtn'>Daily Mission</div>
+						</a>
+						<!-- <a class="fancyboxStore fancybox.iframe" style="text-decoration:none"  href="store.html">
+							<div style="font-size:22px;color:#ffa114;" class="button" id='storeBtn'>Store</div>
+						</a> -->
+					</div>
+					<div class="iframe-info  shiftingColor borderBlue">
+						<div id="divScript" style="font-size:12px"></div>
+					</div>
+				</div>
+				<div class="center" style="width:867px !important; max-width:867px !important; position:absolute; top:0; left: 193px;">
+					<div class="center-top-column">
+						<table style="width:800px; margin:0 auto;">
+							<tr>
+								<td style="Width:33%;">
+									<div id="divLocation" style="font-size:12px;"></div>
+								</td>
+								<td style="Width:33%; text-align:center;">
+									<div id="divCharStuff" onclick="getItemPicker()" style="font-size:14px;"></div>
+								</td>
+								<td style="Width:33%;">
+									<div id="divCurrency" style="font-size:12px; text-align:right"></div>
+								</td>
+							</tr>
+						</table>
+						<table style="width:800px; margin:0 auto;">
+							<tr>
+								<td style="Width:33%;">
+									<table>
+										<tr>
+											<td>
+												<div id="healthBar" style="background-image:url(../images/layout/healthGrad.png); background-repeat:no-repeat;"><img src="../images/layout/Bar.png"></div>
+											</td>
+											<td>
+												<div id="divHealth" style="font-size:12px;margin-left:20px;"></div>
+											</td>
+										</tr>
+									</table>
+								</td>
+								<td style="Width:33%;">
+								</td>
+								<td style="float:right">
+									<table>
+										<tr>
+											<td>
+												<div id="divMana" style="font-size:12px;"></div>
+											</td>
+											<td>
+												<div id="manaBar" style="background-image:url(../images/layout/manaGrad.png); background-repeat:no-repeat;"><img src="../images/layout/Bar.png"></div>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+						<div id="expBar" style="background-image:url(../images/layout/exp_grad.png); background-repeat:no-repeat; margin:10px auto;"><img src="../images/layout/exp_bar.png" class='tooltip expBar' title=''></div>
+						<div id="buffs" style="text-align:center"></div>
+					</div>
+					<div id= "mainContainer" class="center-bottom-column shiftingColor borderBlue">
+						<div ID="chatToggle" style="display:none;color:white;width: 250px;position: absolute;bottom: 0;right: 0;border: 2px solid blue;z-index: 100;border-radius:5px;background-color:black;text-align:center;">
+							<div id="chatPanel" style="display: none;height: 603px; text-align:left;">
+								<div id="chatDiv" style="overflow-y:auto;height: 583px; ">
+								</div>
+								<div id="talkDiv">
+									<input type="text" name="chatInput" id="chatInput" size="22" style="border-radius:3px;"/>
+									<input type="button" name="Chat" value="Chat" id="chat">
+								</div>
+							</div>
+							<span id="toggleChatBtn">Toggle Chat</span>
+						</div>
+						<div id="main-mapContainer" tabindex="500" style="width:100%;  height: 578px; position:relative; ">
+							<div id="wrapper" style="font-size: 0; width:600px; height:600px; overflow: hidden;">
+								<div id="loadingGray" 	style="width:132px; height:24px; position: absolute; top: 50%; left: 50%; margin-top: -12px; margin-left: -72px; background-image:url(../images/layout/loadingGray.png)"></div>
+							</div>
+							<!-- <a class="fancyboxPack fancybox" id='starterPack' style="text-decoration:none" href="#starterPackPanel"> -->
+
+							</a>
+							<div id="buffBtn"></div>
+							<div id='OnScreenText'></div>
+							<div id='teleportText'></div>
+							<div id='loadingDiv'></div>
+						</div>
+						<div id="main-charContainer" class="hiddenMap" style="width:100%;  height: 578px; position:relative; background-color:#393939;">
+							<div class="wrapper" id="charWrapper" style="overflow-y:hidden;">
+								<div id="innerDiv" style='padding-left: 20px; height:700px;'>
+									<table style="height:250px; width:100%; color:blue;">
+										<tr>
+											<td>
+												<table>
+													<tr>
+														<td style="text-align: center;font-size:16px;">
+															<div class='portrit'></div>
+															<div id='charName'></div>
+															<div id='charLevelClass' style="font-size:12px;color: #D3D3D3;margin-top:8px;"></div>
+														</td>
+													</tr>
+												</table>
+											</td>
+											<td>
+												<div style="background-image:url('../images/layout/char_divider.png'); width:24px; height:240px;"></div>
+											</td>
+											<td style="vertical-align:top;">
+												<table class='statTable'>
+													<tr style="height: 35px; vertical-align: top;">
+														<td style="text-align:left; width:150px; display: inline-block;font-weight: bold;  margin-left: -55px;">
+															<span style='text-decoration: underline;'>Available Points:</span>
+														</td>
+														<td id='statPoints' style='font-weight: bold; text-align:left;'></td>
+													</tr>
+													<tr>
+														<td style="text-align:left; width:150px; display: flex; font-weight: bold;">
+															<div class="statAdd" id="addStr" data-attr="strength"></div>
+															Strength:
+														</td>
+														<td id='strPoints' style='font-weight: bold; text-align:left;'></td>
+													</tr>
+													<tr>
+														<td style="text-align:left; width:150px;  margin-top: 2px; display: flex;font-weight: bold;">
+															<div class="statAdd" id="addDex" data-attr="dexterity"></div>
+															Dexterity:
+														</td>
+														<td id='dexPoints' style='font-weight: bold; text-align:left;'></td>
+													</tr>
+													<tr>
+														<td style="text-align:left; width:150px; display: flex;  margin-top: 2px;font-weight: bold;">
+															<div class="statAdd" id='addSpr' data-attr="spirit"></div>
+															Spirit:
+														</td>
+														<td id='sprPoints' style='font-weight: bold; text-align:left;'></td>
+													</tr>
+													<tr>
+														<td style="text-align:left; width:150px; display: flex;  margin-top: 2px;font-weight: bold;">
+															<div class="statAdd" id='addVit' data-attr="vitality"></div>
+															Vitality:
+														</td>
+														<td id='vitPoints' style='font-weight: bold; text-align:left;'></td>
+													</tr>
+												</table>
+												<div id="statExpContainer">
+													<div id="currentExp"></div>
+													<div id="nextLevel"></div>
+												</div>
+											</td>
+											<td>
+												<div style="background-image:url('../images/layout/char_divider.png'); width:24px; height:240px;"></div>
+											</td>
+											<td style="width:300px;color: #D3D3D3;">
+												<p><strong>Strength:</strong> Strongly affects character damage, while also effecting max health, block chance, critical damage, and very slightly, accuracy.</p>
+												<p><strong>Dexterity:</strong> Strongly affects character accuracy, while also effecting damage and dodge rate.</p>
+												<p><strong>Spirit:</strong> Strongly affects max mana and critical chance, while also effecting magic attack and defence.</p>
+												<p><strong>Vitality:</strong> Strongly affects max health, while also effecting defence and mana.</p>
+											</td>
+										</tr>
+									</table>
+									<div style="width:800px; height:8px; margin: 5px -16px; background-image:url(../images/layout/spannerBig.png)"></div>
+									<div id="skillItem" style="margin-left: -25px;">
+										<div id="charEquipContainer" style="display:inline-block;width:300px;height: 80px; margin-right:50px;"></div>
+										<div id="charSkillContainer" style="display:inline-block;width:300px;height: 80px;"></div>
+									</div>
+									<div style="width:800px; height:8px; margin: 5px -16px; background-image:url(../images/layout/spannerBig.png)"></div>
+									<table style="width:800px; margin: 0 -16px;" class="statTable">
+										<tr>
+											<td>
+												Attack Rating: <span id="charAttack">###</span><br/>
+											</td>
+											<td>
+												Critical Chance: <span id="charCritChance">###</span>%<br/>
+											</td>
+											<td>
+												Critical Modifier: <span id="charCritMod">###</span>%<br/>
+											</td>
+										</tr>
+										<tr style="margin-top:10px">
+											<td>
+												Dodge Rating: <span id="charDodge">####</span><br/>
+											</td>
+											<td>
+												Chance to Block: <span id="charBlock">####</span>%<br/>
+											</td>
+											<td>
+												Armor: <span id="charArmor">###</span><br/>
+											</td>
+										</tr>
+									</table>
+									<table style="width:800px; margin: 5px -16px;" class="statTable">
+										<tr>
+											<td>
+												Defence: <span id="charDef">###</span><br/>
+											</td>
+											<td>
+												Magic Defence: <span id="charMDef">###</span><br/>
+											</td>
+										</tr>
+									</table>
+									<div style="width:800px; height:8px; margin: 5px -16px; background-image:url(../images/layout/spannerBig.png)"></div>
+									<table style="width:800px; margin: 0 -16px;" class="statTable">
+										<tr>
+											<td>
+												<span style="color:red">Fire Resistance: </span><span id="charFire">###</span>%<br/>
+											</td>
+											<td>
+												<span style="color:brown">Earth Resistance: </span><span id="charEarth">###</span>%<br/>
+											</td>
+											<td>
+												<span style="color:blue">Ice Resistance: </span><span id="charIce">###</span>%<br/>
+											</td>
+										</tr>
+									</table>
+									<table style="width:800px; margin: 5px -16px;" class="statTable">
+										<tr>
+											<td>
+												<span style="color:purple">Arcane Resistance: </span><span id="charArcane">###</span>%<br/>
+											</td>
+											<td>
+												<span style="color:white">Holy Resistance: </span><span id="charHoly">###</span>%<br/>
+											</td>
+										</tr>
+									</table>
+									<a class="fancyboxquest" style="text-decoration:none" href="#confirmResetPanel">
+										<div class="button" id='resetPromptBtn'><strong>Ascend</strong></div>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div id="main-combatContainer" class="hiddenMap" style="width:100%;  height: 578px; position:relative; background-color:#393939;">
+							<div class="wrapper" id="combatWrapper">
+								<table style="margin: 24px auto; height: 90%;" id="combatTable">
+									<tr style="height:100%;">
+										<td colspan='7' >
+											<div id="combatText" style="position: relative">
+												<div id="innerCombatText" style="position: absolute; bottom:0px;width: 100%;">
+													<table id="combatTextTable" style="text-transform: capitalize; font-size: 14px;width:calc(100% - 10px); margin: 0 auto;">
+														<tr></tr>
+													</table>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td colspan='7'>
+											<div style="width:650px; height:4px; background-image:url(../images/layout/spanner.png)"/>
+										</td>
+									</tr>
+									<tr>
+									<td rowspan='3'>
+									<div class="combatPlayerContainer">
+									</div>
+									</td>
+									<td colspan='3'>
+									<div class="combatKay3">Enter</div>
+									<div id="attackButton" class="attackButtonContainer combatButton">
+									Attack
+									</div>
+									</td>
+									<td>
+									<div class="runButtonContainer combatButton" id="runButton">
+									</div>
+									</td>
+									<td rowspan='3' style="width:100px">
+									<div class="combatDivider">
+									</div>
+									</td>
+									<td rowspan='3'>
+									<div class="combatMonsterContainer">
+									</div>
+									</td>
+									</tr>
+									<tr>
+									<td>
+									<div class="combatKay2">1</div>
+									<div id="combatItem-1" data-script="" class="itemContainer combatButton disabledButton items">
+									</div>
+									</td>
+									<td>
+									<div class="combatKay2">2</div>
+									<div id="combatItem-2" data-script="" class="itemContainer combatButton disabledButton items">
+									</div>
+									</td>
+									<td>
+									<div class="combatKay2">3</div>
+									<div id="combatItem-3" data-script="" class="itemContainer combatButton disabledButton items">
+									</div>
+									</td>
+									<td>
+									<div class="combatKay2">4</div>
+									<div id="combatItem-4" data-script="" class="itemContainer combatButton disabledButton items">
+									</div>
+									</td>
+									</tr>
+									<tr>
+									<td>
+									<div class="combatKay">Q</div>
+									<div id="combatSkill-1" class="skillContainer combatButton">
+									</div>
+									</td>
+									<td>
+									<div class="combatKay">W</div>
+									<div id="combatSkill-2" class="skillContainer combatButton">
+									</div>
+									</td>
+									<td>
+									<div class="combatKay">E</div>
+									<div id="combatSkill-3" class="skillContainer combatButton">
+									</div>
+									</td>
+									<td>
+									<div class="combatKay">R</div>
+									<div id="combatSkill-4" class="skillContainer combatButton">
+									</div>
+									</td>
+									</tr>
+								</table>
+								</div>
+							</div>
+							<div id="main-skillContainer" class="hiddenMap" style="width:100%; height: 578px; position:relative; background-color:#393939;">
+								<div class="wrapper scrollbar-inner" id="InvWrapper" style="overflow: hidden;">
+									<div id="innerDiv" style="padding-top:5px;">
+										<table class="assignGroup skillHidable">
+											<tr>
+												<td style="height: 30px;text-align:center">
+													<div data-show="assignGroup" class="filters filtersClicked assignButton" style="background-position:0 -24px">Assign Skills</div>
+												</td>
+												<td rowspan="7">
+													<div id="treeContainer">
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+														<!--
+															-->
+														<div class="placeholder"></div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="height: 30px;text-align:center">
+													<div id="useSkills" data-show="useGroup" class="filters">Use Skills</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="height: 30px;text-align:center">
+													<div id="equipSkills" data-show="equipGroup" class="filters">Equip Skills</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="text-align:center; font-size: 20px;">Available Points: <span id="freeSkillPoints">0</span></td>
+											</tr>
+											<tr>
+												<td style="padding: 0 10px;">Skill points are earned when you level up and can be spent on specializing your character, to allocate points click the unlocked skill you want to contribute points toward, and click "Confirm" at the bottom.<br/><br/>
+													NOTE: Once a point has been allocated and confirmed it can't be re-allocated.
+												</td>
+											</tr>
+											<tr>
+												<td style="height: 40px;text-align:center">
+													<div id="skillResetButton" class="selected">Reset</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="height: 40px;text-align:center">
+													<div id="skillConfirmButton" class="selected">Confirm</div>
+												</td>
+											</tr>
+										</table>
+										<table style="display:none;" class="useGroup skillHidable">
+											<tr>
+												<td style="height: 30px;text-align:center;width: 214px;">
+													<div id="assignSkills" data-show="assignGroup" class="filters">Assign Skills</div>
+												</td>
+												<td rowspan="4" style="width: 500px;">
+													<div style="height:20px;" class="inventoryTitle useGroup skillHidable">
+														<div id="skillUseMessage"></div>
+													</div>
+													<div id="useableSkillList">
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="height: 30px;text-align:center">
+													<div id="useSkills" data-show="useGroup" class="filters filtersClicked" style="background-position:0 -24px">Use Skills</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="height: 30px;text-align:center">
+													<div id="equipSkills" data-show="equipGroup" class="filters">Equip Skills</div>
+												</td>
+											</tr>
+											<tr>
+												<td></td>
+											</tr>
+										</table>
+										<table style="display:none;" class="equipGroup skillHidable">
+											<tr>
+												<td style="height: 30px;text-align:center;width: 214px;">
+													<div id="assignSkills" data-show="assignGroup" class="filters">Assign Skills</div>
+												</td>
+												<td rowspan="4" style="width: 500px;">
+													<div id="equippedSkillsDiv" class="equipGroup skillHidable" style="text-align:center;">
+													</div>
+													<div style="height:20px;" class="inventoryTitle equipGroup skillHidable">
+														<div id="skillEquipMessage"></div>
+													</div>
+													<div id="equippableSkillList">
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="height: 30px;text-align:center">
+													<div id="useSkills" data-show="useGroup" class="filters">Use Skills</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="height: 30px;text-align:center">
+													<div id="equipSkills" data-show="equipGroup" class="filters filtersClicked" style="background-position:0 -24px">Equip Skills</div>
+												</td>
+											</tr>
+											<tr>
+												<td></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div id="main-shopContainer" class="hiddenMap" style="width:100%;  height: 578px; position:relative; background-color:#393939;">
+								<div id="shopLoading" 	style="width:132px; height:24px; display:none; position: absolute; top: 50%; left: 50%; margin-top: -12px; margin-left: -72px; background-image:url(../images/layout/loadingGray.png)"></div>
+								<div class="wrapper scrollbar-inner" id="shopWrapper" style="overflow-x: hidden !important;">
+									<div id="shopHeader">
+										<div id="shopTitle" class="inventoryTitle" style="height:30px"></div>
+										<span style="color:#A8A8A8; padding-left: 259px;">Tip: Shift-Click to buy/sell stacks of up to 25 at once</span>
+										<div style="width:400px; height:8px; margin: 0 auto; background-image:url(../images/layout/spannerSmall.png)"></div>
+										<table style="margin:0 auto;">
+											<tr>
+												<td>
+													<div id='closeShop' class="tabs" style="background-image:url(../images/ui-buttons/tab_exit.png)">Leave</div>
+												</td>
+												<td>
+													<div class="tabs clickedShop" id="clickBuy" style="background-image:url(../images/ui-buttons/tab_buy.png);margin-left: 10px;">Buy</div>
+												</td>
+												<td>
+													<div class="tabs" id="clickSell" style="background-image:url(../images/ui-buttons/tab_sell.png);margin-right: 10px;">Sell</div>
+												</td>
+												<td style="width:160px;padding-left:5px;" class="buyTabs"><span style="font-size:16px;">Total: <span id="total">0</span>&#438 </span></td>
+												<td class="buyTabs">
+													<div class="tabs" id="buy" style="background-image:url(../images/ui-buttons/tab_finishBuy.png); float:right;">Check-Out</div>
+												</td>
+												<td style="font-size:16px;width:160px;padding-left:5px;" class="sellTabs">Total: <span id="sellTotal" >0</span>&#438 </td>
+												<td class="sellTabs">
+													<div class="tabs" id="sell" style="background-image:url(../images/ui-buttons/tab_finishSell.png); margin:0 auto; text-align:left">Collect</div>
+												</td>
+											</tr>
+										</table>
+										<div style="width:800px; height:8px; margin: 3px auto; background-image:url(../images/layout/spannerBig.png)"></div>
+									</div>
+									<div id="shopInnerDiv" style='width: 95%;margin: 0 auto;'>
+										<div style="height:30px">
+											<div id='messageSlot' style="margin: 0 auto;text-align: center;font-size: 18px; height:30px"></div>
+										</div>
+										<div id='buyList' style="display:block; padding-bottom: 20px;">
+										</div>
+										<div id='sellList' style="display:none; padding-bottom: 20px;">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="main-equipShopContainer" class="hiddenMap" style="width:100%;  height: 578px; position:relative; background-color:#393939;">
+								<div id="equipShopLoading" 	style="width:132px; height:24px; display:none; position: absolute; top: 50%; left: 50%; margin-top: -12px; margin-left: -72px; background-image:url(../images/layout/loadingGray.png)"></div>
+								<div class="wrapper scrollbar-inner" id="equipShopWrapper" style="overflow-x: hidden !important;">
+									<div id="equipmentShopHeader">
+										<div id="equipmentShopTitle" class="inventoryTitle" style="height:30px"></div>
+										<div style="width:400px; height:8px; margin: 0 auto; background-image:url(../images/layout/spannerSmall.png)"></div>
+										<table style="margin:0 auto;">
+											<tr>
+												<td>
+													<div id='closeEquipmentShop' class="tabs" style="background-image:url(../images/ui-buttons/tab_exit.png)">Leave</div>
+												</td>
+												<td>
+													<div class="tabs clickedequipmentShop" id="clickEquipBuy" style="background-image:url(../images/ui-buttons/tab_buy.png);margin-left: 10px;">Buy</div>
+												</td>
+												<td>
+													<div class="tabs" id="clickEquipSell" style="background-image:url(../images/ui-buttons/tab_sell.png);margin-right: 10px; margin-left: 10px;">Sell</div>
+												</td>
+												<td style="width:160px;padding-left:5px;" class="buyTabs"><span id='equipTotalSpan' style="font-size:16px;">Total: <span id="equipTotal">0</span>&#438 </span></td>
+												<td class="buyTabs">
+													<div class="tabs" id="equipBuy" style="background-image:url(../images/ui-buttons/tab_finishBuy.png); float:right;">Check-Out</div>
+												</td>
+												<td style="font-size:16px;width:160px;padding-left:5px;" class="sellTabs">Total: <span id="equipSellTotal" >0</span>&#438 </td>
+												<td class="sellTabs">
+													<div class="tabs" id="equipSell" style="background-image:url(../images/ui-buttons/tab_finishSell.png); margin:0 auto; text-align:left">Collect</div>
+												</td>
+											</tr>
+										</table>
+										<div style="width:800px; height:8px; margin: 3px auto; background-image:url(../images/layout/spannerBig.png)"></div>
+										<div style="width:650px; height:60px; margin: 0 auto;" class="sellTabs">
+											<div class="filterShopButtons" id="filtershophelm" data-type="Helm" style="background-image:url(../images/layout/slotHelm.png)"></div>
+											<div class="filterShopButtons" id="filtershoparmor" data-type="Armor" style="background-image:url(../images/layout/slotArmor.png)"></div>
+											<div class="filterShopButtons" id="filtershopweapon" data-type="Weapon" style="background-image:url(../images/layout/slotWeapon.png)"></div>
+											<div class="filterShopButtons" id="filtershopoffhand" data-type="Offhand" style="background-image:url(../images/layout/slotOffhand.png)"></div>
+											<div class="filterShopButtons" id="filtershopbelt" data-type="Belt" style="background-image:url(../images/layout/slotBelt.png)"></div>
+											<div class="filterShopButtons" id="filtershopboots" data-type="Boots" style="background-image:url(../images/layout/slotBoots.png)"></div>
+											<div class="filterShopButtons" id="filtershopaccessory" data-type="Accessory" style="background-image:url(../images/layout/slotAccessory.png)"></div>
+										</div>
+										<div style="width:650px; height:4px; margin: 0 auto; background-image:url(../images/layout/spanner.png)" class="sellTabs"></div>
+									</div>
+									<div id="equipmentShopInnerDiv" style='width: 95%;margin: 0 auto;  height: calc(100% - 180px); overflow-y: auto;'>
+										<div style="height:30px">
+											<div id='equipMessageSlot' style="margin: 0 auto;text-align: center;font-size: 18px; height:30px"></div>
+										</div>
+										<div id='buyEquipList' style="display:block; padding-bottom: 20px;">
+										</div>
+										<div id='sellEquipList' style="display:none; padding-bottom: 20px;">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="main-stashContainer" class="hiddenMap innerWrapper" style="width:100%;  height: 578px; position:relative; background-color:#393939;">
+								<div id="stashLoading" 	style="width:132px; height:24px; display:none; position: absolute; top: 50%; left: 50%; margin-top: -12px; margin-left: -72px; background-image:url(../images/layout/loadingGray.png)"></div>
+								<div class="wrapperCut" id="InvWrapper">
+									<div id="innerDiv">
+										<table style="width:100%;margin-left:20px;">
+											<tr>
+												<td>
+													<div id="stashTab-0" class="tabs" onClick='filterStash(0)' style="background-image:url(../images/ui-buttons/tab_usable.png)">Consumable</div>
+												</td>
+												<td>
+													<div id="stashTab-3" class="tabs" onClick='filterStash(3)' style="background-image:url(../images/ui-buttons/tab_equip.png)">Equipment</div>
+												</td>
+												<td>
+													<div id="stashTab-1" class="tabs" onClick='filterStash(1)' style="background-image:url(../images/ui-buttons/tab_combat.png)">Combat</div>
+												</td>
+												<td>
+													<div id="stashTab-4" class="tabs" onClick='filterStash(4)' style="background-image:url(../images/ui-buttons/tab_misc.png)">Misc.</div>
+												</td>
+												<td>
+													<div id='closeStash' class="tabs" style="background-image:url(../images/ui-buttons/tab_exit.png)">Leave</div>
+												</td>
+											</tr>
+										</table>
+										<div style="width:800px; height:8px; margin: 3px 3px; background-image:url(../images/layout/spannerBig.png)"></div>
+										<div id='stashEqContainer' style="display:none;"></div>
+										<div id='stashEquipmentContainer'>
+											<div style="width:650px; height:4px; margin: 10px 70px; background-image:url(../images/layout/spanner.png)"></div>
+											<div style="width:650px; height:60px; margin: 10px 70px;" class="stashFilters">
+												<div class="filterStashButtons" id="filterStashhelm" data-type="Helm" style="background-image:url(../images/layout/slotHelm.png)"></div>
+												<div class="filterStashButtons" id="filterStasharmor" data-type="Armor" style="background-image:url(../images/layout/slotArmor.png)"></div>
+												<div class="filterStashButtons" id="filterStashweapon" data-type="Weapon" style="background-image:url(../images/layout/slotWeapon.png)"></div>
+												<div class="filterStashButtons" id="filterStashoffhand" data-type="Offhand" style="background-image:url(../images/layout/slotOffhand.png)"></div>
+												<div class="filterStashButtons" id="filterStashbelt" data-type="Belt" style="background-image:url(../images/layout/slotBelt.png)"></div>
+												<div class="filterStashButtons" id="filterStashboots" data-type="Boots" style="background-image:url(../images/layout/slotBoots.png)"></div>
+												<div class="filterStashButtons" id="filterStashaccessory" data-type="Accessory" style="background-image:url(../images/layout/slotAccessory.png)"></div>
+											</div>
+											<div style="width:650px; height:4px; margin: -10px 70px; background-image:url(../images/layout/spanner.png)" class="stashFilters"></div>
+											<div id="stashLeft" class="stashColumn scrollbar-inner"> </div>
+											<div id="stashSpanner"></div>
+											<div id="stashRight" class="stashColumn scrollbar-inner"> </div>
+										</div>
+										<br>
+									</div>
+								</div>
+							</div>
+							<div id="main-invContainer" class="hiddenMap innerWrapper" style="width:100%;  height: 578px; position:relative; background-color:#393939;">
+								<div class="wrapper scrollbar-inner" id="InvWrapper">
+									<div id="innerDiv">
+										<table style="width:100%;">
+											<tr>
+												<td>
+													<div id="invTab-0" class="tabs" onClick='filterItems(0)' style="background-image:url(../images/ui-buttons/tab_usable.png)">Consumable</div>
+												</td>
+												<td>
+													<div id="invTab-2" class="tabs" onClick='filterItems(2)' style="background-image:url(../images/ui-buttons/tab_quest.png)">Quest</div>
+												</td>
+												<td>
+													<div id="invTab-3" class="tabs" onClick='filterItems(3)' style="background-image:url(../images/ui-buttons/tab_equip.png)">Equipment</div>
+												</td>
+												<td>
+													<div id="invTab-1" class="tabs" onClick='filterItems(1)' style="background-image:url(../images/ui-buttons/tab_combat.png)">Combat</div>
+												</td>
+												<td>
+													<div id="invTab-4" class="tabs" onClick='filterItems(4)' style="background-image:url(../images/ui-buttons/tab_misc.png)">Misc.</div>
+												</td>
+											</tr>
+										</table>
+										<div style="width:800px; height:8px; margin: 3px 3px; background-image:url(../images/layout/spannerBig.png)"></div>
+										<div id='equipContainer' style="display:none;"></div>
+										<div id='equipmentContainer' style="display:none;">
+											<table style="width:100%; margin-left: -7px;">
+												<tr>
+													<td style="width:300px; font-size:14px; text-align:right; padding-right:10px;">
+														<span style="font-style: italic;" id="helmSlotText">Unequipped</span>
+													</td>
+													<td class="equipCell">
+														<div class="equipmentItems items" id="equipped-helm" data-itemID="0" data-script="" style="background-image:url(../images/layout/slotHelm.png)"></div>
+													</td>
+													<td class="equipCell">
+														<div class="equipmentItems items" id="equipped-armor" data-itemID="0" data-script="" style="background-image:url(../images/layout/slotArmor.png)"></div>
+													</td>
+													<td style="width:300px; font-size:14px; padding-left:10px;">
+														<span style="font-style: italic;" id="armorSlotText">Unequipped</span>
+													</td>
+												</tr>
+												<tr>
+													<td style="font-size:14px; text-align:right; padding-right:10px;">
+														<span style="font-style: italic;" id="weaponSlotText">Unequipped</span>
+													</td>
+													<td class="equipCell">
+														<div class="equipmentItems items" id="equipped-weapon" data-itemID="0" data-script="" style="background-image:url(../images/layout/slotWeapon.png)"></div>
+													</td>
+													<td class="equipCell">
+														<div class="equipmentItems items" id="equipped-offhand" data-itemID="0" data-script="" style="background-image:url(../images/layout/slotOffhand.png)"></div>
+													</td>
+													<td style="font-size:14px; padding-left:10px;">
+														<span style="font-style: italic;" id="offhandSlotText">Unequipped</span>
+													</td>
+												</tr>
+												<tr>
+													<td style="font-size:14px; text-align:right; padding-right:10px;">
+														<span style="font-style: italic;" id="beltSlotText">Unequipped</span>
+													</td>
+													<td class="equipCell">
+														<div class="equipmentItems items" id="equipped-belt" data-itemID="0" data-script="" style="background-image:url(../images/layout/slotBelt.png)"></div>
+													</td>
+													<td class="equipCell">
+														<div class="equipmentItems items" id="equipped-boots" data-itemID="0" data-script="" style="background-image:url(../images/layout/slotBoots.png)"></div>
+													</td>
+													<td style="font-size:14px; padding-left:10px;">
+														<span style="font-style: italic;" id="bootsSlotText">Unequipped</span>
+													</td>
+												</tr>
+												<tr>
+													<td style="font-size:14px; text-align:right; padding-right:10px;">
+														<span style="font-style: italic;" id="acc1SlotText">Unequipped</span>
+													</td>
+													<td class="equipCell">
+														<div class="equipmentItems items" id="equipped-Accessory1" data-itemID="0"  data-script="" style="background-image:url(../images/layout/slotAccessory.png)"></div>
+													</td>
+													<td class="equipCell">
+														<div class="equipmentItems items" id="equipped-Accessory2" data-itemID="0" data-script="" style="background-image:url(../images/layout/slotAccessory.png)"></div>
+													</td>
+													<td style="font-size:14px; padding-left:10px;">
+														<span style="font-style: italic;" id="acc2SlotText">Unequipped</span>
+													</td>
+												</tr>
+											</table>
+											<div style="width:650px; height:4px; margin: 10px 20px; background-image:url(../images/layout/spanner.png)"></div>
+											<div style="width:650px; height:60px; margin: 10px 20px;">
+												<div class="filterButtons" id="filterhelm" data-type="Helm" style="background-image:url(../images/layout/slotHelm.png)"></div>
+												<div class="filterButtons" id="filterarmor" data-type="Armor" style="background-image:url(../images/layout/slotArmor.png)"></div>
+												<div class="filterButtons" id="filterweapon" data-type="Weapon" style="background-image:url(../images/layout/slotWeapon.png)"></div>
+												<div class="filterButtons" id="filteroffhand" data-type="Offhand" style="background-image:url(../images/layout/slotOffhand.png)"></div>
+												<div class="filterButtons" id="filterbelt" data-type="Belt" style="background-image:url(../images/layout/slotBelt.png)"></div>
+												<div class="filterButtons" id="filterboots" data-type="Boots" style="background-image:url(../images/layout/slotBoots.png)"></div>
+												<div class="filterButtons" id="filteraccessory" data-type="Accessory" style="background-image:url(../images/layout/slotAccessory.png)"></div>
+											</div>
+											<div style="width:650px; height:4px; margin: -10px 20px; background-image:url(../images/layout/spanner.png)"></div>
+										</div>
+										<div style="height:20px;" class='inventoryTitle'>
+											<div id='invHeader'>
+											</div>
+										</div>
+										<div id='itemList' style="margin-top: 20px;"></div>
+										<div id='usableList' style="margin-top: 20px;"></div>
+										<br>
+									</div>
+								</div>
+							</div>
+							<div id="main-questContainer" class="hiddenMap innerWrapper">
+								<div class="wrapper scrollbar-inner" id="questWrapper">
+									<div id="questLoading" 	style="width:132px; height:24px; display:none; position: absolute; top: 50%; left: 50%; margin-top: -12px; margin-left: -72px; background-image:url(../images/layout/loadingGray.png)"></div>
+									<div id="questInnerDiv">
+										<div id="questText"></div>
+										<table style="width:100%; padding-top: 50px; font-size: 16px;">
+											<tr>
+												<td style="width:50%; vertical-align:top;">
+													<table style="width:100%">
+														<tr>
+															<td colspan=2 style="text-align: center; font-size: 16px;"><strong>Task</strong></td>
+														</tr>
+														<tr id="req1row">
+															<td style="width:50px">
+																<div id="req1image" class="items"></div>
+															</td>
+															<td id="req1" style="font-size: 16px;"></td>
+														</tr>
+														<tr id="req2row">
+															<td style="width:50px">
+																<div id="req2image" class="items"></div>
+															</td>
+															<td id="req2" style="font-size: 16px;"></td>
+														</tr>
+														<tr id="req3row">
+															<td style="width:50px">
+																<div id="req3image" class="items"></div>
+															</td>
+															<td id="req3" style="font-size: 16px;"></td>
+														</tr>
+													</table>
+												</td>
+												<td style="width:50%;">
+													<table style="width:100% vertical-align:top;">
+														<tr>
+															<td colspan=2 style="text-align: center; font-size: 16px;"><strong>Rewards</strong></td>
+														</tr>
+														<tr id="rewardErow">
+															<td style="width:50px">
+																<div id="rewardEimage" class="items"></div>
+															</td>
+															<td id="rewardEXP" style="font-size: 16px;"></td>
+														</tr>
+														<tr id="rewardSrow">
+															<td style="width:50px">
+																<div id="rewardSimage" class="items"></div>
+															</td>
+															<td id="rewardSilver" style="font-size: 16px;"></td>
+														</tr>
+														<tr id="reward1row">
+															<td style="width:50px">
+																<div id="reward1image" class="items"></div>
+															</td>
+															<td id="reward1" style="font-size: 16px;"></td>
+														</tr>
+														<tr id="reward2row">
+															<td style="width:50px">
+																<div id="reward2image" class="items"></div>
+															</td>
+															<td id="reward2" style="font-size: 16px;"></td>
+														</tr>
+														<tr id="reward3row">
+															<td style="width:50px">
+																<div id="reward3image" class="items"></div>
+															</td>
+															<td id="reward3" style="font-size: 16px;"></td>
+														</tr>
+													</table>
+												</td>
+											<tr>
+										</table>
+										<div style="width:650px; height:4px; margin: 10px 40px; background-image:url(../images/layout/spanner.png)"></div>
+										<div style="display: flex; padding-right: 50px;">
+											<div class="questTabs" style="background-image:url(../images/ui-buttons/quest_accept.png);" data-id="" id="questLeft">Accept</div>
+											<div style="background-image:url(../images/ui-buttons/quest_leave.png);   margin-left: -70px;" class="questTabs" id="questRight">Leave</div>
+										</div>
+										<div style="background-image:url(../images/ui-buttons/quest_leave.png);  display:none; margin:20px auto;" class="questTabs" id="questComplete">Leave</div>
+									</div>
+								</div>
+							</div>
+							<div id="main-corruptContainer" class="hiddenMap innerWrapper">
+								<div id="corruptLoading" style="width:132px; height:24px; display:none; position: absolute; top: 50%; left: 50%; margin-top: -12px; margin-left: -72px; background-image:url(../images/layout/loadingGray.png)"></div>
+								<div class="wrapper" id="corruptWrapper">
+									<div id="corruptInnerDiv">
+										<div id="telePageScript">So many stairs, quickly travel up the tower using cursed telestones you find along your way.</div>
+										<div class="questTabs" id="leaveTeleport">Leave</div>
+										<div class="items" id="corruptStoneCount" style="background-image:url(../images/items/usable/corrupt_rock_tele.png);float: right;margin-right: 127px;display: inline-block;cursor: default;">8</div>
+										<div style="width:650px; height:4px; margin: 10px 110px; background-image:url(../images/layout/spanner.png)"></div>
+										<div id="corruptTeleOptions" style="width: 670px;margin-left: 90px;"></div>
+									</div>
+								</div>
+							</div>
+							<div id="main-teleContainer" class="hiddenMap innerWrapper">
+								<div id="teleLoading" style="width:132px; height:24px; display:none; position: absolute; top: 50%; left: 50%; margin-top: -12px; margin-left: -72px; background-image:url(../images/layout/loadingGray.png)"></div>
+								<div class="wrapper" id="teleWrapper">
+									<div id="teleInnerDiv">
+										<div id="currentLocText" style=" width:100%; padding-top:40px; text-align:center;font-size: 24px;padding-bottom:5px;"></div>
+										<div id="respawnText" style=" width:100%; text-align:center;font-size: 24px;padding-bottom:20px;"></div>
+										<div id="telePicture"></div>
+										<div id="telePageScript">This is a Teleblisk.. You can use these to set your respawn point or to travel quickly through out the world.. For a fee.</div>
+										<div class="questTabs" id="leaveTeleport">Leave</div>
+										<div style="width:650px; height:4px; margin: 10px 110px; background-image:url(../images/layout/spanner.png)"></div>
+										<div id="spawnOptions"></div>
+										<div style="width:650px; height:4px; margin: 10px 110px; background-image:url(../images/layout/spanner.png)"></div>
+										<div id="teleOptions"></div>
+									</div>
+								</div>
+							</div>
+							<div id="main-healerContainer" class="hiddenMap" style="color: white; width:100%; height:calc(100% - 48px); position:relative; background-color:#393939;">
+								<div class="wrapper" id="teleWrapper">
+									<div id="healerInnerDiv">
+										<div id="healerPicture"></div>
+										<div id="healerPageScript">Hello over there, You look like you could use some rest and rejuvenation, I'd be happy to help you out, but my services aren’t free!</div>
+										<strong>
+											<div id="healerMsg" style="color:green;height: 20px;margin-left: 387px;padding-top: 10px;"></div>
+										</strong>
+										<table style="    width: 500px; margin-left: 150px; margin-top:10px;">
+											<tr>
+												<td>
+													Heal 10 Health
+													<div id="heal-10" class="tabs buyHealth">4 Silver</div>
+												</td>
+												<td>
+													Restore 10 Mana
+													<div id="rest-10" class="tabs buyMana">7 Silver</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Heal 100 Health
+													<div id="heal-100" class="tabs buyHealth">35 Silver</div>
+												</td>
+												<td>
+													Restore 100 Mana
+													<div id="rest-100" class="tabs buyMana">65 Silver</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Heal 1,000 Health
+													<div id="heal-1000" class="tabs buyHealth">300 Silver</div>
+												</td>
+												<td>
+													Restore 1,000 Mana
+													<div id="rest-1000" class="tabs buyMana">620 Silver</div>
+												</td>
+											</tr>
+										</table>
+										<div style="width:650px; height:4px; margin: 10px 110px; background-image:url(../images/layout/spanner.png)"></div>
+										<div class="questTabs" id="leaveTeleport">Leave</div>
+									</div>
+								</div>
+							</div>
+							<div id="main-besContainer" class="hiddenMap innerWrapper">
+								<div class="wrapper" id="besWrapper">
+									<div style='margin-left:80px;display: none;'>
+										<select class="bestFilters" id='chapterFilter'></select>
+										<select class="bestFilters" id='mapFilter'></select>
+										<select class="bestFilters" id='zoneFilter'></select>
+									</div>
+									<div id="besMonsters"></div>
+								</div>
+							</div>
+							<div id="main-craftContainer" class="hiddenMap innerWrapper">
+								<div class="wrapper" id="craftWrapper" style="overflow-y: hidden;">
+									<div id="craftInnerDiv">
+										<div class="items craftingSelector" data-uid="-1" style="background-image: url(../images/items/usable/question.png);position: relative;top: 75px;left: 100px;z-index: 10;"></div>
+										<div class="items craftingSelector" data-uid="-1" style="background-image: url(../images/items/usable/question.png);position: relative;top: 100px;left: 100px;z-index: 10;"></div>
+										<div class="items craftingSelector" data-uid="-1" style="background-image: url(../images/items/usable/question.png);position: relative;top: 125px;left: 100px;z-index: 10;"></div>
+										<div style="background-image: url(../images/layout/anvil.png);position: relative;top: -80px;left: 300px;z-index: 10;height:150px;width:150px;background-size: 150px 100px;background-position-y: 50px;background-repeat: no-repeat;"></div>
+										<div id="itemOutput" class="items" data-uid="-1" style="background-image: url(../images/items/usable/question.png);position: relative;top: -160px;left: 490px;z-index: 10;"></div>
+										<div id="itemOutputScript" style="background-color: black;font-size:12px;position: relative;top: -290px;left: 560px;z-index: 10;width:170px;height:340px;"></div>
+										<div id="craftingDetails">Cost: <span id="craftCost">N/A</span><br/>Success Rate: <span id="craftSuccess">N/A</span></div>
+										<div id="craftNowBtn" data-recipeID="" class="tabs" style="background-image:url(../images/ui-buttons/tab_equip.png);position: relative;top: -400px;left: 308px;">Craft</div>
+										<div id="craftPageScript">Select an empty item slot on the left to open the item picker, once three items have been selected, if they make something, it will appear on the right.<br/>Crafting costs silver, and doesn't always succeed.</div>
+										<div id="craftResult" style="display:none;"></div>
+
+									</div>
+								</div>
+							</div>
+							<div id="main-achievementContainer" class="hiddenMap innerWrapper">
+								<div id="achLoading" style="width:132px; height:24px; display:none; position: absolute; top: 50%; left: 50%; margin-top: -12px; margin-left: -72px; background-image:url(../images/layout/loadingGray.png)"></div>
+								<div class="wrapper scrollbar-inner" id="achWrapper">
+									<div id="achievementDiv"></div>
+								</div>
+							</div>
+							<div id="main-questLogContainer" class="hiddenMap innerWrapper">
+								<div id="questLogLoading" style="width:132px; height:24px; display:none; position: absolute; top: 50%; left: 50%; margin-top: -12px; margin-left: -72px; background-image:url(../images/layout/loadingGray.png)"></div>
+								<div id="questLogWrapper"  class="wrapper  scrollbar-inner">
+									<div id="completeQuestFolder" class="questFolder">
+										<div id="collapseComplete" class="questCollapse"></div>
+										<div id="completeQuestHeader" style="padding-left:20px;font-size:36px;display:inline-block;">Complete Quests</div>
+									</div>
+									<div id="completeQuests" style="display:none;" class="questListContainer">
+									</div>
+									<div style="width:650px; height:4px; margin: 0 110px; background-image:url(../images/layout/spanner.png)"></div>
+									<div id="incompleteQuestFolder" class="questFolder">
+										<div id="collapseIncomplete" class="questCollapse"></div>
+										<div  id="incompleteQuestHeader"style="padding-left:20px;font-size:36px;display:inline-block;">Quests In Progress</div>
+									</div>
+									<div id="incompleteQuests" style="display:none;" class="questListContainer">
+									</div>
+								</div>
+							</div>
+							<div id="main-questDetailsContainer" class="hiddenMap innerWrapper">
+								<div id="questDetailsLoading" 	style="width:132px; height:24px; display:none; position: absolute; top: 50%; left: 50%; margin-top: -12px; margin-left: -72px; background-image:url(../images/layout/loadingGray.png)"></div>
+								<div class="wrapper" id="questDetailsWrapper">
+									<div id="questDetailsInnerDiv">
+										<div id="questDetailsText"></div>
+										<table style="width:100%; padding-top: 50px; font-size: 16px;">
+											<tr>
+												<td style="width:50%; vertical-align:top;">
+													<table style="width:100%">
+														<tr>
+															<td colspan=2 style="text-align: center; font-size: 16px;"><strong>Task</strong></td>
+														</tr>
+														<tr id="reqD1row">
+															<td style="width:50px">
+																<div id="reqD1image" class="items"></div>
+															</td>
+															<td id="reqD1" style="font-size: 16px;"></td>
+														</tr>
+														<tr id="reqD2row">
+															<td style="width:50px">
+																<div id="reqD2image" class="items"></div>
+															</td>
+															<td id="reqD2" style="font-size: 16px;"></td>
+														</tr>
+														<tr id="reqD3row">
+															<td style="width:50px">
+																<div id="reqD3image" class="items"></div>
+															</td>
+															<td id="reqD3" style="font-size: 16px;"></td>
+														</tr>
+													</table>
+												</td>
+												<td style="width:50%;">
+													<table style="width:100% vertical-align:top;">
+														<tr>
+															<td colspan=2 style="text-align: center; font-size: 16px;"><strong>Rewards</strong></td>
+														</tr>
+														<tr id="rewardDErow">
+															<td style="width:50px">
+																<div id="rewardDEimage" class="items"></div>
+															</td>
+															<td id="rewardDEXP" style="font-size: 16px;"></td>
+														</tr>
+														<tr id="rewardDSrow">
+															<td style="width:50px">
+																<div id="rewardDSimage" class="items"></div>
+															</td>
+															<td id="rewardDSilver" style="font-size: 16px;"></td>
+														</tr>
+														<tr id="rewardD1row">
+															<td style="width:50px">
+																<div id="rewardD1image" class="items"></div>
+															</td>
+															<td id="rewardD1" style="font-size: 16px;"></td>
+														</tr>
+														<tr id="rewardD2row">
+															<td style="width:50px">
+																<div id="rewardD2image" class="items"></div>
+															</td>
+															<td id="rewardD2" style="font-size: 16px;"></td>
+														</tr>
+														<tr id="rewardD3row">
+															<td style="width:50px">
+																<div id="rewardD3image" class="items"></div>
+															</td>
+															<td id="rewardD3" style="font-size: 16px;"></td>
+														</tr>
+													</table>
+												</td>
+											<tr>
+										</table>
+										<div style="width:650px; height:4px; margin: 10px 40px; background-image:url(../images/layout/spanner.png)"></div>
+										<div style="background-image:url(../images/ui-buttons/quest_leave.png);   margin:0 auto;" class="questTabs" id="questDetailsRight">Back</div>
+										<div id="dailyQuestPanel" style="display:none;">
+											<div style="text-align: center;margin-bottom: 15px;font-size: 48px;color: darkgray;">Daily Quest</div>
+											<div id="day1" class="dailyItem dailyDone" data-index="1">&nbsp;1</div>
+											<div id="day2" class="dailyItem" data-index="2">&nbsp;3</div>
+											<div id="day3" class="dailyItem dailyLocked" data-index="3">&nbsp;1</div>
+											<div id="day4" class="dailyItem dailyLocked" data-index="4">&nbsp;1</div>
+											<div id="day5" class="dailyItem dailyLocked" data-index="5">&nbsp;1</div>
+											<div style="text-align: center;font-size: 28px;margin-top:10px;color: darkgray;">Complete daily quests for extra rewards!</div>
+											<div id="dailyInnerDiv">
+												<table style="width:100%; padding-top: 10px; font-size: 16px;height: 75px !important; display: block;">
+													<tr>
+														<td style="width:50%; vertical-align:top;">
+															<table style="width:100%">
+																<tr>
+																	<td colspan=2 style="text-align: center; font-size: 16px;"><strong>Task</strong></td>
+																</tr>
+																<tr id="daily1row">
+																	<td style="width:50px">
+																		<div id="daily1image" class="items"></div>
+																	</td>
+																	<td id="daily1" style="font-size: 16px;"></td>
+																</tr>
+																<tr id="daily2row">
+																	<td style="width:50px">
+																		<div id="daily2image" class="items"></div>
+																	</td>
+																	<td id="daily2" style="font-size: 16px;"></td>
+																</tr>
+																<tr id="daily3row">
+																	<td style="width:50px">
+																		<div id="daily3image" class="items"></div>
+																	</td>
+																	<td id="daily3" style="font-size: 16px;"></td>
+																</tr>
+															</table>
+														</td>
+														<td style="width:50%;vertical-align: top;">
+															<table style="width:100%; vertical-align:top;">
+																<tr>
+																	<td colspan=2 style="text-align: center; font-size: 16px;"><strong>Rewards</strong></td>
+																</tr>
+																<tr id="dailyRewardErow">
+																	<td style="width:50px">
+																		<div id="dailyRewardEimage" class="items"></div>
+																	</td>
+																	<td id="rewardEXP" style="font-size: 16px;"></td>
+																</tr>
+																<tr id="dailyRewardSrow">
+																	<td style="width:50px">
+																		<div id="dailyRewardSimage" class="items"></div>
+																	</td>
+																	<td id="dailyRewardSilver" style="font-size: 16px;"></td>
+																</tr>
+																<tr id="dailyReward1row">
+																	<td style="width:50px">
+																		<div id="dailyReward1image" class="items"></div>
+																	</td>
+																	<td id="dailyReward1" style="font-size: 16px;"></td>
+																</tr>
+															</table>
+														</td>
+													<tr>
+												</table>
+												<div class="questTabs" style="background-image:url(../images/ui-buttons/quest_accept.png); margin-top: 20px;" id="dailyAccept">Accept</div>
+											</div>
+										</div>
+										<div id="confirmResetPanel" style="display:none;">
+											<div style="text-align: center;margin-bottom: 15px;font-size: 48px;color: darkgray;">Ascension</div>
+											<p style="color:#D3D3D3; font-size:14px;text-align:left;width: 90%;margin: 40px auto 25px;">
+											Ascending your character will bring you back to level one, with no items, quests, or skills!  Ascension rewards are based on your current class and difficulty as well as what level you reset at, higher difficulty ascensions yield better bonuses. Look below to see your current ascension reward tiers.<br/>
+											<div id="resetRewardList"></div>
+											</p>
+											<div class="button" id='resetBtn'><strong>Ascend</strong></div>
+										</div>
+										<div id="starterPackPanel" style="display:none;">
+											<div style="text-align: center;margin-bottom: 15px;font-size: 30px; margin-top: 15px;color: darkgray;">Starter Pack (110 Kreds)</div>
+											<div style="margin: 0 auto; width: 298px;">
+												<div class="displayItems" title="<strong>Effect:</strong> Grants 75% additional experience from combat while buff is active, lasts 75 encounters." style="background-image: url(../images/items/usable/expScroll.png);">10</div>
+												<div class="displayItems" title="<strong>Effect:</strong> While buff is active, negates exp and buff loss from death, but expires on death, lasts 50 encounters." style="background-image: url(../images/items/usable/lifeScroll.png);">20</div>
+												<div class="displayItems" title="<strong>Effect:</strong> A large potion, able to restore 50% of your maximum health and mana" style="background-image: url(../images/items/usable/largePurple.png);">5</div>
+												<div class="displayItems" title="<strong>Effect:</strong> An Ornate Jewelry Box, can only be somthing good inside!" style="background-image: url(../images/items/usable/ornateJewelBox.png);">1</div>
+												<div class="displayItems" title="<strong>Item Class:</strong> Weapon - Sword<br/><br/><strong>Damage:</strong> 10 - 16<br/><br/><strong>Bonus Crit Chance: </strong>1%" style="background-image: url(../images/items/equip/bronzeDagger.png);">1</div>
+											</div>
+											<p style="color:#D3D3D3; font-size:14px;text-align:left;width: 90%;margin: 25px auto 25px;">
+											A bundle of Experience Scrolls, Insurance Scrolls, Rejuvenation Potions, an Ornate Jewellery Box, and a Bronze Dagger for stabbing at a bulk discount of over 55%!<br/>
+											<div id="resetRewardList"></div>
+											</p>
+											<div class="button" id='buyStarterPack'><strong>Purchase</strong></div>
+										</div>
+										<div id="mapImage" style="display:none;">
+											<div id='playerMarker'></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="itemSelectPanel" style="display:none;height:650px;width:990px;padding-top:10px;background-image: url(../images/layout/wat4.png);">
+								<div style="text-align: center;margin-bottom: 15px;font-size: 24px;color: darkgray;">Select An Item</div>
+								<div id="itemSelectList" class-" scrollbar-inner" style="height: 607px;overflow-y: auto;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
