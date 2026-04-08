@@ -1071,6 +1071,7 @@ $(document).ready(function() {
                 case 114:
                     $("#combatSkill-4").trigger( "click" );
                     break;
+                case 32:
                 case 13:
                     $("#attackButton").trigger( "click" );
                     break;
@@ -1438,10 +1439,10 @@ function initGame() {
 							ping = 0;
 						}
 
-                        keyUp = this.input.keyboard.isDown(Phaser.Keyboard.W);
-                        keyDown = this.input.keyboard.isDown(Phaser.Keyboard.S)
-                        keyLeft = this.input.keyboard.isDown(Phaser.Keyboard.A)
-                        keyRight = this.input.keyboard.isDown(Phaser.Keyboard.D)
+                        keyUp = this.input.keyboard.isDown(Phaser.Keyboard.W) || this.input.keyboard.isDown(Phaser.Keyboard.UP);
+                        keyDown = this.input.keyboard.isDown(Phaser.Keyboard.S) || this.input.keyboard.isDown(Phaser.Keyboard.DOWN);
+                        keyLeft = this.input.keyboard.isDown(Phaser.Keyboard.A) || this.input.keyboard.isDown(Phaser.Keyboard.LEFT);
+                        keyRight = this.input.keyboard.isDown(Phaser.Keyboard.D) || this.input.keyboard.isDown(Phaser.Keyboard.RIGHT);
 
                         if (keyUp && keyRight) {
                             player.body.velocity.y = - walk * .7;
