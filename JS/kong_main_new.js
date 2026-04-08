@@ -73,7 +73,7 @@ var combatLocked = false;
 var mpxi = function(x) {
     return x
 };
-var questPanel = '<div class="wrapper scrollbar-inner" id="questWrapper"><div id="questLoading" style="width:132px; height:24px; display:none; position: absolute; top: 50%; left: 50%; margin-top: -12px; margin-left: -72px; background-image:url(../images/layout/loadingGray.png)"></div><div id="questInnerDiv"><div id="questText"></div><table style="width:100%; padding-top: 50px; font-size: 16px;"><tr><td style="width:50%; vertical-align:top;"><table style="width:100%"><tr><td colspan=2 style="text-align: center; font-size: 16px;"><strong>Task</strong></td></tr><tr id="req1row"><td style="width:50px"><div id="req1image" class="items"></div></td><td id="req1" style="font-size: 16px;"></td></tr><tr id="req2row"><td style="width:50px"><div id="req2image" class="items"></div></td><td id="req2" style="font-size: 16px;"></td></tr><tr id="req3row"><td style="width:50px"><div id="req3image" class="items"></div></td><td id="req3" style="font-size: 16px;"></td></tr></table></td><td style="width:50%;"><table style="width:100% vertical-align:top;"><tr><td colspan=2 style="text-align: center; font-size: 16px;"><strong>Rewards</strong></td></tr><tr id="rewardErow"><td style="width:50px"><div id="rewardEimage" class="items"></div></td><td id="rewardEXP" style="font-size: 16px;"></td></tr><tr id="rewardSrow"><td style="width:50px"><div id="rewardSimage" class="items"></div></td><td id="rewardSilver" style="font-size: 16px;"></td></tr><tr id="reward1row"><td style="width:50px"><div id="reward1image" class="items"></div></td><td id="reward1" style="font-size: 16px;"></td></tr><tr id="reward2row"><td style="width:50px"><div id="reward2image" class="items"></div></td><td id="reward2" style="font-size: 16px;"></td></tr><tr id="reward3row"><td style="width:50px"><div id="reward3image" class="items"></div></td><td id="reward3" style="font-size: 16px;"></td></tr></table></td><tr></table><div style="width:650px; height:4px; margin: 10px 40px; background-image:url(../images/layout/spanner.png)"></div><div style="display: flex; padding-right: 50px;"><div class="questTabs" style="background-image:url(../images/ui-buttons/quest_accept.png);" data-id="" id="questLeft">Accept</div><div style="background-image:url(../images/ui-buttons/quest_leave.png);   margin-left: -70px;" class="questTabs" id="questRight">Leave</div></div><div style="background-image:url(../images/ui-buttons/quest_leave.png);  display:none; margin:20px auto;" class="questTabs" id="questComplete">Leave</div></div></div>';
+var questPanel = '<div class="wrapper scrollbar-inner" id="questWrapper"><div id="questLoading" style="width:132px; height:24px; display:none; position: absolute; top: 50%; left: 50%; margin-top: -12px; margin-left: -72px; background-image:url(images/layout/loadingGray.png)"></div><div id="questInnerDiv"><div id="questText"></div><table style="width:100%; padding-top: 50px; font-size: 16px;"><tr><td style="width:50%; vertical-align:top;"><table style="width:100%"><tr><td colspan=2 style="text-align: center; font-size: 16px;"><strong>Task</strong></td></tr><tr id="req1row"><td style="width:50px"><div id="req1image" class="items"></div></td><td id="req1" style="font-size: 16px;"></td></tr><tr id="req2row"><td style="width:50px"><div id="req2image" class="items"></div></td><td id="req2" style="font-size: 16px;"></td></tr><tr id="req3row"><td style="width:50px"><div id="req3image" class="items"></div></td><td id="req3" style="font-size: 16px;"></td></tr></table></td><td style="width:50%;"><table style="width:100% vertical-align:top;"><tr><td colspan=2 style="text-align: center; font-size: 16px;"><strong>Rewards</strong></td></tr><tr id="rewardErow"><td style="width:50px"><div id="rewardEimage" class="items"></div></td><td id="rewardEXP" style="font-size: 16px;"></td></tr><tr id="rewardSrow"><td style="width:50px"><div id="rewardSimage" class="items"></div></td><td id="rewardSilver" style="font-size: 16px;"></td></tr><tr id="reward1row"><td style="width:50px"><div id="reward1image" class="items"></div></td><td id="reward1" style="font-size: 16px;"></td></tr><tr id="reward2row"><td style="width:50px"><div id="reward2image" class="items"></div></td><td id="reward2" style="font-size: 16px;"></td></tr><tr id="reward3row"><td style="width:50px"><div id="reward3image" class="items"></div></td><td id="reward3" style="font-size: 16px;"></td></tr></table></td><tr></table><div style="width:650px; height:4px; margin: 10px 40px; background-image:url(images/layout/spanner.png)"></div><div style="display: flex; padding-right: 50px;"><div class="questTabs" style="background-image:url(images/ui-buttons/quest_accept.png);" data-id="" id="questLeft">Accept</div><div style="background-image:url(images/ui-buttons/quest_leave.png);   margin-left: -70px;" class="questTabs" id="questRight">Leave</div></div><div style="background-image:url(images/ui-buttons/quest_leave.png);  display:none; margin:20px auto;" class="questTabs" id="questComplete">Leave</div></div></div>';
 var fakeQuest = '["2","working","Well hello there!<br\/><br\/>Do you have time to help me out a bit with some farm work? I can pay you ofcorse!  Those damn rabbits keep eating all my crops, kill a bunch and bring me 4 hides and I can maybe make something for you!","Thanks so much for getting these for me!  Here is some goodies for your time, Come back soon and I may have more work for you!","","30","4","0","0","0","0","4","1","5","3","0","0","15","15"]';
 //element exists override
 window.onerror = function(errorMsg, url, lineNumber, column, errorObj) {
@@ -213,7 +213,7 @@ $(document).ready(function() {
         var slot = $(this)
         itemPickerShow(function(ret) {
             try{
-                slot.css("background-image", "url(../images/items/" + inventoryJSON[ret].image + ".png)")
+                slot.css("background-image", "url(images/items/" + inventoryJSON[ret].image + ".png)")
                 slot.attr("data-uid", ret);
                 slot.attr("data-id", inventoryJSON[ret].itemID);
                 slot.attr("data-equip", inventoryJSON[ret]["equipment"]);
@@ -1140,8 +1140,8 @@ function loadCookie() {
                 generateSkillTree();
                 buildAchievementPage();
                 init_class = a13[0];
-                $('.portrit').css('background-image', 'url(../images/portrits/' + init_class + '.png)');
-                $('.combatPlayerContainer').css('background-image', 'url(../images/portrits/' + init_class + '.png)');
+                $('.portrit').css('background-image', 'url(images/portrits/' + init_class + '.png)');
+                $('.combatPlayerContainer').css('background-image', 'url(images/portrits/' + init_class + '.png)');
                 ajaxCall("json", "checkCombat");
                 addItems();
             }
@@ -1268,27 +1268,27 @@ function initGame() {
             }else{
                 playerMapPull = playerMap;
             }
-            map = game.load.tilemap('tilemap', '../JSON/' + playerMapPull + '.json', null, Phaser.Tilemap.TILED_JSON);
-            game.load.spritesheet('walker', '../images/map-sheets/' + loc[3] + '.png', 60, 60);
-            game.load.image('rocks', '../images/map-sheets/rocks.png');
-            game.load.image('trees', '../images/map-sheets/trees.png');
-            game.load.image('water', '../images/map-sheets/water.png');
-            game.load.image('cave', '../images/map-sheets/cave.png');
-            game.load.image('npcs', '../images/map-sheets/npcs.png');
-            game.load.image('grass', '../images/map-sheets/grass.png');
-            game.load.image('graveyard', '../images/map-sheets/graveyard.png');
-            game.load.image('farmland', '../images/map-sheets/farmland.png');
-            game.load.image('muddyFarmland', '../images/map-sheets/muddyFarmland.png');
-            game.load.image('transition', '../images/map-sheets/transition.png');
-            game.load.image('mine', '../images/map-sheets/mine.png');
-            game.load.image('caveNew', '../images/map-sheets/caveNew.png');
-            game.load.image('desertOasis', '../images/map-sheets/desertOasis.png');
-            game.load.image('desertSand', '../images/map-sheets/desertSand.png');
-            game.load.image('desertTown', '../images/map-sheets/desertTown.png');
-            game.load.image('desertWalls', '../images/map-sheets/desertWalls.png');
-            game.load.image('desertRoofs', '../images/map-sheets/desertRoofs.png');
-            game.load.image('adobe', '../images/map-sheets/adobe.png');
-            game.load.image('sandyCave', '../images/map-sheets/sandyCave.png');
+            map = game.load.tilemap('tilemap', 'JSON/' + playerMapPull + '.json', null, Phaser.Tilemap.TILED_JSON);
+            game.load.spritesheet('walker', 'images/map-sheets/' + loc[3] + '.png', 60, 60);
+            game.load.image('rocks', 'images/map-sheets/rocks.png');
+            game.load.image('trees', 'images/map-sheets/trees.png');
+            game.load.image('water', 'images/map-sheets/water.png');
+            game.load.image('cave', 'images/map-sheets/cave.png');
+            game.load.image('npcs', 'images/map-sheets/npcs.png');
+            game.load.image('grass', 'images/map-sheets/grass.png');
+            game.load.image('graveyard', 'images/map-sheets/graveyard.png');
+            game.load.image('farmland', 'images/map-sheets/farmland.png');
+            game.load.image('muddyFarmland', 'images/map-sheets/muddyFarmland.png');
+            game.load.image('transition', 'images/map-sheets/transition.png');
+            game.load.image('mine', 'images/map-sheets/mine.png');
+            game.load.image('caveNew', 'images/map-sheets/caveNew.png');
+            game.load.image('desertOasis', 'images/map-sheets/desertOasis.png');
+            game.load.image('desertSand', 'images/map-sheets/desertSand.png');
+            game.load.image('desertTown', 'images/map-sheets/desertTown.png');
+            game.load.image('desertWalls', 'images/map-sheets/desertWalls.png');
+            game.load.image('desertRoofs', 'images/map-sheets/desertRoofs.png');
+            game.load.image('adobe', 'images/map-sheets/adobe.png');
+            game.load.image('sandyCave', 'images/map-sheets/sandyCave.png');
         },
         create: function() {
             game.input.mspointer.stop()
@@ -1749,7 +1749,7 @@ function destroyGame() {
 }
 
 function drawMinimap(){
-    $('#mapImage').css("background-image", "url(../images/maps/" + playerMap + ".png)");
+    $('#mapImage').css("background-image", "url(images/maps/" + playerMap + ".png)");
     if (playerMap == "VanaheimrNE") {
         $('#mapImage').css("width", "648px");
         $('#mapImage').css("height", "572px");
@@ -1856,7 +1856,7 @@ function delegateAjax(call, data) {
             if (data.indexOf("Invalid") == -1) {
                 descripInfo = data.split('|')[6];
                 $(".combatMonsterContainer").css("background-Color", data.split('|')[8])
-                $(".combatMonsterContainer").css("background-image", "url(../images/portrits/" + data.split('|')[2] + ".png)")
+                $(".combatMonsterContainer").css("background-image", "url(images/portrits/" + data.split('|')[2] + ".png)")
                 $("#divScript").html(descripInfo);
                 $('.tooltiptwo').tooltipster();
             } else {
@@ -2070,14 +2070,14 @@ function delegateAjax(call, data) {
 			data = JSON.parse(data);
             if(data == false){
                 $("#craftNowBtn").addClass("disabledButton");
-                $("#itemOutput").css("background-image", "url(../images/items/usable/question.png");
+                $("#itemOutput").css("background-image", "url(images/items/usable/question.png");
     			$("#itemOutputScript").html("");
     			$("#craftSuccess").html("N/A");
     			$("#craftCost").html("N/A");
                 $("#craftCost").css("color", "white");
     			$("#craftNowBtn").attr("data-recipeID", -1);
             }else{
-                $("#itemOutput").css("background-image", "url(../images/items/"+ data["image"] +".png)");
+                $("#itemOutput").css("background-image", "url(images/items/"+ data["image"] +".png)");
     			$("#itemOutputScript").html(data["card"]);
     			$("#craftSuccess").html(data["rateText"]);
     			$("#craftCost").html(data["costText"]);
@@ -2132,13 +2132,13 @@ function delegateAjax(call, data) {
                                 $('.combatButton').addClass("disabledButton");
                                 $('#attackButton').removeClass("disabledButton");
                                 $('#attackButton').html('Collect Loot');
-                                $('#attackButton').css('background-image', 'url(../images/ui-buttons/combatLoot.png)');
+                                $('#attackButton').css('background-image', 'url(images/ui-buttons/combatLoot.png)');
                                 }
                             }else if(data['combatStatus2'] == 3){
                                 $('.combatButton').addClass("disabledButton");
                                 $('#attackButton').removeClass("disabledButton");
                                 $('#attackButton').html('Respawn');
-                                $('#attackButton').css('background-image', 'url(../images/ui-buttons/combatRespawn.png)');
+                                $('#attackButton').css('background-image', 'url(images/ui-buttons/combatRespawn.png)');
                                 combatLocked = true;
                             }else{
                                 combatLocked = false;
@@ -2191,7 +2191,7 @@ function populateStatus() {
             if (value.split('|')[2] > 0) {
                 buffHTML += '<br/><br/>Battles Remaining: ' + value.split('|')[2]
             }
-            buffHTML += '" style="background-image:url(../images/buffs/' + value.split('|')[1] + '.png);"></div>'
+            buffHTML += '" style="background-image:url(images/buffs/' + value.split('|')[1] + '.png);"></div>'
             $('#combatTable').css('height', 'calc(100% - 48px)')
         }
     });
@@ -2269,7 +2269,7 @@ function populateInv() {
             invString = invString + "<table id='item-" + item.itemID + "' style='float:left; width:33%;' data-type='"
             invString = invString + itemType + "'><tr><td style='width: 40px;'><div data-script='" + item.description
             invString = invString + "' data-type='" + itemType + "' data-id=" + item.itemID + " data-name='" + item.name + "' id='itemImage" + item.itemID
-            invString = invString + "' class='items' style='background-image:url(../images/items/" + item.image + ".png)'>"
+            invString = invString + "' class='items' style='background-image:url(images/items/" + item.image + ".png)'>"
             invString = invString + item.count + "</div></td><td style='font-size: 14px;'>" + item.name + "</td></tr></table>";
         }
 
@@ -2293,11 +2293,11 @@ function populateInv() {
             }
 
             usableString = usableString + "<table style=\"width:370px;display:inline-block;padding-right:15px;\"><tr><td style=\"height: 52px;width: 52px;\"><div class=\"items forceCursor\" data-ItemID=\"";
-            usableString = usableString + item.itemID + "\" data-script=\"" + item.description.replace("'", "&#39;") + "\" id=\"usable-" + item.itemID + "\" style=\"background-image:url(../images/items/" + item.image + ".png)\">" + item.count + "</div></td>";
+            usableString = usableString + item.itemID + "\" data-script=\"" + item.description.replace("'", "&#39;") + "\" id=\"usable-" + item.itemID + "\" style=\"background-image:url(images/items/" + item.image + ".png)\">" + item.count + "</div></td>";
             usableString = usableString + "<td style=\"padding-left:15px;font-size:14px;width:180px\">" + item.name + "</td>"
-            usableString = usableString + "<td style=\"width:48px;\"><div data-script=\"" + item.description.replace("'", "&#39;") + "\" class=\"multiUse " + class1 + "\" data-use=\"1\" data-itemID=\"" + item.itemID + "\" style=\"background-image:url(../images/ui-buttons/use1.png)\"></div></td>"
-            usableString = usableString + "<td style=\"width:48px;\"><div data-script=\"" + item.description.replace("'", "&#39;") + "\" class=\"multiUse " + class5 + "\" data-use=\"5\" data-itemID=\"" + item.itemID + "\" style=\"background-image:url(../images/ui-buttons/use5.png)\"></div></td>"
-            usableString = usableString + "<td style=\"width:48px;\"><div data-script=\"" + item.description.replace("'", "&#39;") + "\" class=\"multiUse " + class25 + "\" data-use=\"25\" data-itemID=\"" + item.itemID + "\" style=\"background-image:url(../images/ui-buttons/use25.png)\"></div></td>"
+            usableString = usableString + "<td style=\"width:48px;\"><div data-script=\"" + item.description.replace("'", "&#39;") + "\" class=\"multiUse " + class1 + "\" data-use=\"1\" data-itemID=\"" + item.itemID + "\" style=\"background-image:url(images/ui-buttons/use1.png)\"></div></td>"
+            usableString = usableString + "<td style=\"width:48px;\"><div data-script=\"" + item.description.replace("'", "&#39;") + "\" class=\"multiUse " + class5 + "\" data-use=\"5\" data-itemID=\"" + item.itemID + "\" style=\"background-image:url(images/ui-buttons/use5.png)\"></div></td>"
+            usableString = usableString + "<td style=\"width:48px;\"><div data-script=\"" + item.description.replace("'", "&#39;") + "\" class=\"multiUse " + class25 + "\" data-use=\"25\" data-itemID=\"" + item.itemID + "\" style=\"background-image:url(images/ui-buttons/use25.png)\"></div></td>"
             usableString = usableString + "</tr></table>"
         }
     })
@@ -2307,18 +2307,18 @@ function populateInv() {
         $(this).attr("data-itemID", "0")
         slot = ($(this).attr("id").substring(9, $(this).attr("id").length));
         if (slot == "Accessory1") {
-            $(this).css("background-image", "url(../images/layout/slotAccessory.png)");
+            $(this).css("background-image", "url(images/layout/slotAccessory.png)");
             $("#acc1SlotText").html("unequipped");
             $("#acc1SlotText").css("font-style", "italic");
         } else if (slot == "Accessory2") {
-            $(this).css("background-image", "url(../images/layout/slotAccessory.png)");
+            $(this).css("background-image", "url(images/layout/slotAccessory.png)");
             $("#acc2SlotText").html("unequipped");
             $("#acc2SlotText").css("font-style", "italic");
         } else {
             $("#" + slot + "SlotText").html("unequipped");
             $("#" + slot + "SlotText").css("font-style", "italic");
             slot = slot.charAt(0).toUpperCase() + slot.substr(1);
-            $(this).css("background-image", "url(../images/layout/slot" + slot + ".png)");
+            $(this).css("background-image", "url(images/layout/slot" + slot + ".png)");
         }
         $(this).attr("data-script", "An empty equipment slot.")
     });
@@ -2339,21 +2339,21 @@ function populateInv() {
                 invString = invString + "<table class='itemTable' id='item-" + i + "' style='float:left; width:33%;' data-type='0|0|0|1"
                 invString = invString + "' data-class='" + v["slot"] + "'><tr><td style='width: 40px;'><div data-script='" + v["script1"]
                 invString = invString + "' data-id='" + i + "' data-type='" + itemType + "' data-name='" +  v["name"] + "' id='unequipped-" + i
-                invString = invString + "' class='items' style='background-image:url(../images/items/" + v["image"] + ".png)'>"
+                invString = invString + "' class='items' style='background-image:url(images/items/" + v["image"] + ".png)'>"
                 invString = invString + "</div></td><td style='font-size: 14px;'>" + name + "</td></tr></table>";
             } else {
                 if (slot == "accessory") {
                     if ($('#equipped-Accessory1').attr("data-itemID") == 0) {
                         $('#equipped-Accessory1').attr("data-itemID", i)
                         $('#equipped-Accessory1').attr("data-script", v["script1"])
-                        $('#equipped-Accessory1').css("background-image", "url(../images/items/" + v["image"] + ".png)");
+                        $('#equipped-Accessory1').css("background-image", "url(images/items/" + v["image"] + ".png)");
                         $('#equipped-Accessory1').css("cursor", "pointer");
                         $('#acc1SlotText').css("font-style", "");
                         $('#acc1SlotText').html(name);
                     } else {
                         $('#equipped-Accessory2').attr("data-itemID", i)
                         $('#equipped-Accessory2').attr("data-script", v["script1"])
-                        $('#equipped-Accessory2').css("background-image", "url(../images/items/" + v["image"] + ".png)");
+                        $('#equipped-Accessory2').css("background-image", "url(images/items/" + v["image"] + ".png)");
                         $('#equipped-Accessory2').css("cursor", "pointer");
                         $('#acc2SlotText').css("font-style", "");
                         $('#acc2SlotText').html(name);
@@ -2361,21 +2361,21 @@ function populateInv() {
                 } else if (slot == "2hweapon") {
                     slot = "weapon";
                     $('#equipped-' + slot).attr("data-itemID", i)
-                    $('#equipped-' + slot).css("background-image", "url(../images/items/" + v["image"] + ".png)");
+                    $('#equipped-' + slot).css("background-image", "url(images/items/" + v["image"] + ".png)");
                     $('#equipped-' + slot).css("cursor", "pointer");
                     $('#equipped-' + slot).attr("data-script", v["script1"])
                     $('#' + slot + 'SlotText').css("font-style", "");
                     $('#' + slot + 'SlotText').html(name);
                     slot = "offhand";
                     $('#equipped-' + slot).attr("data-itemID", i)
-                    $('#equipped-' + slot).css("background-image", "url(../images/items/" + v["image"] + ".png)");
+                    $('#equipped-' + slot).css("background-image", "url(images/items/" + v["image"] + ".png)");
                     $('#equipped-' + slot).css("cursor", "pointer");
                     $('#equipped-' + slot).attr("data-script", v["script1"])
                     $('#' + slot + 'SlotText').css("font-style", "");
                     $('#' + slot + 'SlotText').html(name);
                 } else {
                     $('#equipped-' + slot).attr("data-itemID", i)
-                    $('#equipped-' + slot).css("background-image", "url(../images/items/" + v["image"] + ".png)");
+                    $('#equipped-' + slot).css("background-image", "url(images/items/" + v["image"] + ".png)");
                     $('#equipped-' + slot).css("cursor", "pointer");
                     $('#equipped-' + slot).attr("data-script", v["script1"])
                     $('#' + slot + 'SlotText').css("font-style", "");
@@ -2406,7 +2406,7 @@ function populatePicker() {
     $.each(inventoryJSON, function(i, item) {
         if((item.archived != 1 && item.equipment == 1 && item.count > 0 && item.equipped == 0) || (item.equipment == 0 && item.count > 0 && item.quest == 0)){
             pickerString = pickerString + "<table id='picker-" + item.itemID + "' style='float:left; width:33%;'><tr><td style='width: 40px;'><div data-equip=0"
-            pickerString = pickerString + "' class='pickerItems' data-name='" + item.name + "' data-uid=" + i + " style='background-image:url(../images/items/" + item.image + ".png)'>"
+            pickerString = pickerString + "' class='pickerItems' data-name='" + item.name + "' data-uid=" + i + " style='background-image:url(images/items/" + item.image + ".png)'>"
             pickerString = pickerString + item.count + "</div></td><td style='font-size: 14px;'>" + item.name + "</td></tr></table>";
         }
     })
@@ -2506,19 +2506,19 @@ function populateEquip() {
         if (init_equips[counter] < 0) {
             newString = newString + '<td style="width:60px;"><div id="equippedImage' + (counter + 1) + '"';
             newString = newString + 'data-script="blag" class="noItems"';
-            newString = newString + 'style="background-image:url(../images/layout/slotCombat.png);margin:0 auto;">';
+            newString = newString + 'style="background-image:url(images/layout/slotCombat.png);margin:0 auto;">';
         } else {
             item = getInventoryJSONRecord(init_equips[counter]);
             newString = newString + '<td style="width:60px;"><div id="equippedImage' + (counter + 1) + '"';
             newString = newString + 'data-script="' + item.description + '" class="items" ';
-            newString = newString + 'style="background-image:url(../images/items/' + item.image + '.png); margin:0 auto;">';
+            newString = newString + 'style="background-image:url(images/items/' + item.image + '.png); margin:0 auto;">';
         }
         counter++;
     }
 
     equipString = equipString + newString + '</tr></table>'
     $('#charEquipContainer').html(equipString);
-    equipString = equipString + '<div style="width:400px; height:8px; margin-left:-10px; margin-top:5px; background-image:url(../images/layout/spannerSmall.png)"></div>';
+    equipString = equipString + '<div style="width:400px; height:8px; margin-left:-10px; margin-top:5px; background-image:url(images/layout/spannerSmall.png)"></div>';
     $('#equipContainer').html(equipString);
 
 }
@@ -2539,16 +2539,16 @@ function populateEquippedSkills() {
         if (init_eSkills[counter - 1] < 0 || init_eSkills[counter - 1] == null) {
             newString = newString + '<td style="width:60px;"><div id="equippedSkillImage' + counter + '"';
             newString = newString + 'data-script="blag" class="noSkills"';
-            newString = newString + 'style="background-image:url(../images/ui-buttons/emptySpell.png);margin:0 auto;">';
+            newString = newString + 'style="background-image:url(images/ui-buttons/emptySpell.png);margin:0 auto;">';
         } else {
             newString = newString + '<td style="width:60px;"><div id="equippedSkillImage' + counter + '"';
             newString = newString + ' class="items openSkill" ';
-            newString = newString + 'style="background-image:url(../images/skills/' + skillList[init_eSkills[counter - 1] - 1].split('|')[2] + '.png); margin:0 auto;">';
+            newString = newString + 'style="background-image:url(images/skills/' + skillList[init_eSkills[counter - 1] - 1].split('|')[2] + '.png); margin:0 auto;">';
         }
     }
     equipString = equipString + newString + '</tr></table>'
     $('#charSkillContainer').html(equipString);
-    equipString = equipString + '<div style="width:400px; height:8px; margin:0 auto; background-image:url(../images/layout/spannerSmall.png)"></div>';
+    equipString = equipString + '<div style="width:400px; height:8px; margin:0 auto; background-image:url(images/layout/spannerSmall.png)"></div>';
     $('#equippedSkillsDiv').html(equipString);
 }
 
@@ -2737,7 +2737,7 @@ function populateQuestPage(data) {
                 if(questInfo["req-" + i] != 0){
                     item = getInventoryJSONRecord(questInfo["req-" + i]);
                     $('#daily' + i + 'row').show();
-                    $('#daily' + i + 'image').css("background-image", "url(../images/items/" + item.image + '.png)');
+                    $('#daily' + i + 'image').css("background-image", "url(images/items/" + item.image + '.png)');
                     if(item.visible == 1){
                         $('#daily' + i).html(item.name + " - " + questInfo["amnt-" + i] + " Required");
                     }else{
@@ -2756,7 +2756,7 @@ function populateQuestPage(data) {
                 if(questInfo["reward-" + i] != 0){
                     item = getInventoryJSONRecord(questInfo["reward-" + i]);
                     $('#dailyReward' + i + 'row').show();
-                    $('#dailyReward' + i + 'image').css("background-image", "url(../images/items/" + item.image + '.png)');
+                    $('#dailyReward' + i + 'image').css("background-image", "url(images/items/" + item.image + '.png)');
                     $('#dailyReward' + i).html(item.name + " - " + questInfo["rAmnt-" + i] + " Rewarded");
                 } else {
                     $('#dailyReward' + i).hide();
@@ -2765,14 +2765,14 @@ function populateQuestPage(data) {
 
             if (questInfo["expAmnt"] != 0) {
                 $('#dailyRewardErow').show();
-                $('#dailyRewardEimage').css("background-image", "url(../images/items/misc/exp.png)");
+                $('#dailyRewardEimage').css("background-image", "url(images/items/misc/exp.png)");
                 $('#dailyRewardEXP').html("Experience - " + formatNumber(questInfo["expAmnt"]) + " Rewarded");
             } else {
                 $('#dailyRewardErow').hide();
             }
             if (questInfo["silverAmnt"] != 0) {
                 $('#dailyRewardSrow').show();
-                $('#dailyRewardSimage').css("background-image", "url(../images/items/misc/silver.png)");
+                $('#dailyRewardSimage').css("background-image", "url(images/items/misc/silver.png)");
                 $('#dailyRewardSilver').html("Silver - " + formatNumber(questInfo["silverAmnt"]) + " Rewarded");
             } else {
                 $('#dailyRewardSrow').hide();
@@ -2792,7 +2792,7 @@ function populateQuestPage(data) {
                         string = '<span style="color:red;"><strong>' + item.count + '/' + questInfo["amnt-" + i] + '</strong></span>';
                         complete = false;
                     }
-                    $('#daily' + i + 'image').css("background-image", "url(../images/items/" + item.image + '.png)');
+                    $('#daily' + i + 'image').css("background-image", "url(images/items/" + item.image + '.png)');
 
                     if(item.visible == 1){
                         $('#daily' + i).html(item.name + " - " + string + " Collected");
@@ -2807,7 +2807,7 @@ function populateQuestPage(data) {
                 if(questInfo["reward-" + i] != 0){
                     item = getInventoryJSONRecord(questInfo["reward-" + i]);
                     $('#dailyReward' + i + 'row').show();
-                    $('#dailyReward' + i + 'image').css("background-image", "url(../images/items/" + item.image + '.png)');
+                    $('#dailyReward' + i + 'image').css("background-image", "url(images/items/" + item.image + '.png)');
                     $('#dailyReward' + i).html(item.name + " - " + questInfo["rAmnt-" + i] + " Rewarded");
                 } else {
                     $('#dailyReward' + i).hide();
@@ -2816,14 +2816,14 @@ function populateQuestPage(data) {
 
             if (questInfo["expAmnt"] != 0) {
                 $('#dailyRewardErow').show();
-                $('#dailyRewardEimage').css("background-image", "url(../images/items/misc/exp.png)");
+                $('#dailyRewardEimage').css("background-image", "url(images/items/misc/exp.png)");
                 $('#dailyRewardEXP').html("Experience - " + formatNumber(questInfo["expAmnt"]) + " Rewarded");
             } else {
                 $('#dailyRewardErow').hide();
             }
             if (questInfo["silverAmnt"] != 0) {
                 $('#dailyRewardSrow').show();
-                $('#dailyRewardSimage').css("background-image", "url(../images/items/misc/silver.png)");
+                $('#dailyRewardSimage').css("background-image", "url(images/items/misc/silver.png)");
                 $('#dailyRewardSilver').html("Silver - " + formatNumber(questInfo["silverAmnt"]) + " Rewarded");
             } else {
                 $('#dailyRewardSrow').hide();
@@ -2857,7 +2857,7 @@ function populateQuestPage(data) {
                 if(questInfo["req-" + i] != 0){
                     item = getInventoryJSONRecord(questInfo["req-" + i]);
                     $('#req' + i + 'row').show();
-                    $('#req' + i + 'image').css("background-image", "url(../images/items/" + item.image + '.png)');
+                    $('#req' + i + 'image').css("background-image", "url(images/items/" + item.image + '.png)');
                     if(item.visible == 1){
                         $('#req' + i).html(item.name + " - " + questInfo["amnt-" + i] + " Required");
                     }else{
@@ -2876,7 +2876,7 @@ function populateQuestPage(data) {
                 if(questInfo["reward-" + i] != 0){
                     item = getInventoryJSONRecord(questInfo["reward-" + i]);
                     $('#reward' + i + 'row').show();
-                    $('#reward' + i + 'image').css("background-image", "url(../images/items/" + item.image + '.png)');
+                    $('#reward' + i + 'image').css("background-image", "url(images/items/" + item.image + '.png)');
                     $('#reward' + i).html(item.name + " - " + questInfo["rAmnt-" + i] + " Rewarded");
                 } else {
                     $('#reward' + i).hide();
@@ -2885,20 +2885,20 @@ function populateQuestPage(data) {
 
             if (questInfo["expAmnt"] != 0) {
                 $('#rewardErow').show();
-                $('#rewardEimage').css("background-image", "url(../images/items/misc/exp.png)");
+                $('#rewardEimage').css("background-image", "url(images/items/misc/exp.png)");
                 $('#rewardEXP').html("Experience - " + formatNumber(questInfo["expAmnt"]) + " Rewarded");
             } else {
                 $('#rewardErow').hide();
             }
             if (questInfo["silverAmnt"] != 0) {
                 $('#rewardSrow').show();
-                $('#rewardSimage').css("background-image", "url(../images/items/misc/silver.png)");
+                $('#rewardSimage').css("background-image", "url(images/items/misc/silver.png)");
                 $('#rewardSilver').html("Silver - " + formatNumber(questInfo["silverAmnt"]) + " Rewarded");
             } else {
                 $('#rewardSrow').hide();
             }
             $('#questLeft').html("Accept Quest");
-            $('#questLeft').css("background-image", "url(../images/ui-buttons/quest_accept.png)");
+            $('#questLeft').css("background-image", "url(images/ui-buttons/quest_accept.png)");
         } else if (questInfo.status == "working") {
             complete = true;
             $('#questText').html(questInfo.startText);
@@ -2915,7 +2915,7 @@ function populateQuestPage(data) {
                         string = '<span style="color:red;"><strong>' + item.count + '/' + questInfo["amnt-" + i] + '</strong></span>';
                         complete = false;
                     }
-                    $('#req' + i + 'image').css("background-image", "url(../images/items/" + item.image + '.png)');
+                    $('#req' + i + 'image').css("background-image", "url(images/items/" + item.image + '.png)');
 
                     if(item.visible == 1){
                         $('#req' + i).html(item.name + " - " + string + " Collected");
@@ -2931,7 +2931,7 @@ function populateQuestPage(data) {
                 if(questInfo["reward-" + i] != 0){
                     item = getInventoryJSONRecord(questInfo["reward-" + i]);
                     $('#reward' + i + 'row').show();
-                    $('#reward' + i + 'image').css("background-image", "url(../images/items/" + item.image + '.png)');
+                    $('#reward' + i + 'image').css("background-image", "url(images/items/" + item.image + '.png)');
                     $('#reward' + i).html(item.name + " - " + questInfo["rAmnt-" + i] + " Rewarded");
                 } else {
                     $('#reward' + i).hide();
@@ -2940,14 +2940,14 @@ function populateQuestPage(data) {
 
             if (questInfo["expAmnt"] != 0) {
                 $('#rewardErow').show();
-                $('#rewardEimage').css("background-image", "url(../images/items/misc/exp.png)");
+                $('#rewardEimage').css("background-image", "url(images/items/misc/exp.png)");
                 $('#rewardEXP').html("Experience - " + formatNumber(questInfo["expAmnt"]) + " Rewarded");
             } else {
                 $('#rewardErow').hide();
             }
             if (questInfo["silverAmnt"] != 0) {
                 $('#rewardSrow').show();
-                $('#rewardSimage').css("background-image", "url(../images/items/misc/silver.png)");
+                $('#rewardSimage').css("background-image", "url(images/items/misc/silver.png)");
                 $('#rewardSilver').html("Silver - " + formatNumber(questInfo["silverAmnt"]) + " Rewarded");
             } else {
                 $('#rewardSrow').hide();
@@ -2956,10 +2956,10 @@ function populateQuestPage(data) {
             if (complete) {
                 $('#questText').html(questInfo.finishText);
                 $('#questLeft').html("Collect Reward");
-                $('#questLeft').css("background-image", "url(../images/ui-buttons/combatLoot.png)");
+                $('#questLeft').css("background-image", "url(images/ui-buttons/combatLoot.png)");
             } else {
                 $('#questLeft').html("Cancel Quest");
-                $('#questLeft').css("background-image", "url(../images/ui-buttons/quest_decline.png)");
+                $('#questLeft').css("background-image", "url(images/ui-buttons/quest_decline.png)");
             }
             $("#questInnerDiv").children().show();
             $('#questComplete').hide();
@@ -3012,7 +3012,7 @@ function initCombat(log) {
     $('#main-combatContainer').fadeIn(300);
     $('#combatText').scrollTop($('#combatText').prop("scrollHeight"));
     $('#attackButton').html('Attack');
-    $('#attackButton').css('background-image', 'url(../images/ui-buttons/CombatAttack.png)');
+    $('#attackButton').css('background-image', 'url(images/ui-buttons/CombatAttack.png)');
     $('.combatButton').each(function(index) {
         if ($(this).hasClass("items")) {
             if ($(this).html() != "0" && $(this).html() != "") {
@@ -3047,7 +3047,7 @@ function populateCombatLog(log, status = 0) {
         itemIndex = init_equips[counter];
         if (itemIndex != -1) {
             item = getInventoryJSONRecord(itemIndex)
-            $("#combatItem-" + (counter + 1)).css("background-image", "url(../images/items/" + item.image + ".png)");
+            $("#combatItem-" + (counter + 1)).css("background-image", "url(images/items/" + item.image + ".png)");
             $("#combatItem-" + (counter + 1)).addClass("combatIcons");
             $("#combatItem-" + (counter + 1)).html(item.count);
             $("#combatItem-" + (counter + 1)).css("opacity", "");
@@ -3055,7 +3055,7 @@ function populateCombatLog(log, status = 0) {
             $("#combatItem-" + (counter + 1)).attr("data-script", item.description);
         } else {
             $("#combatItem-" + (counter + 1)).removeClass("combatIcons");
-            $("#combatItem-" + (counter + 1)).css("background-image", "url(../images/layout/slotCombat.png)");
+            $("#combatItem-" + (counter + 1)).css("background-image", "url(images/layout/slotCombat.png)");
             $("#combatItem-" + (counter + 1)).css("opacity", ".5");
             $("#combatItem-" + (counter + 1)).css("cursor", "Default");
             $("#combatItem-" + (counter + 1)).data("id", "-1");
@@ -3063,7 +3063,7 @@ function populateCombatLog(log, status = 0) {
         }
         skillIndex = init_eSkills[counter];
         if (skillIndex != -1) {
-            $("#combatSkill-" + (counter + 1)).css("background-image", "url(../images/skills/" + skillList[skillIndex - 1].split("|")[2] + ".png)");
+            $("#combatSkill-" + (counter + 1)).css("background-image", "url(images/skills/" + skillList[skillIndex - 1].split("|")[2] + ".png)");
             $("#combatSkill-" + (counter + 1)).addClass("combatIcons");
             $("#combatSkill-" + (counter + 1)).addClass("combatActiveSkill");
             $("#combatSkill-" + (counter + 1)).attr("data-id", skillIndex);
@@ -3095,7 +3095,7 @@ function populateCombatLog(log, status = 0) {
         } else {
             $("#combatSkill-" + (counter + 1)).removeClass("combatIcons");
             $("#combatSkill-" + (counter + 1)).removeClass("combatActiveSkill");
-            $("#combatSkill-" + (counter + 1)).css("background-image", "url(../images/ui-buttons/emptySpell.png)");
+            $("#combatSkill-" + (counter + 1)).css("background-image", "url(images/ui-buttons/emptySpell.png)");
             $("#combatSkill-" + (counter + 1)).css("opacity", ".5");
             $("#combatSkill-" + (counter + 1)).css("cursor", "Default");
             $("#combatSkill-" + (counter + 1)).attr("data-id", "-1");
@@ -3487,7 +3487,7 @@ function buildShop(info) {
         block += '<tr style="margin:10px;"><td rowspan="2" style="width:60px;">';
         block += '<div id="itemBuyImage' + item.itemID + '"';
         block += 'data-script="' + item.description + '" data-price="' + item.value + '" data-index="' + item.itemID + '" class="shopItems items" ';
-        block += 'style="background-image:url(../images/items/' + item.image + '.png)";>';
+        block += 'style="background-image:url(images/items/' + item.image + '.png)";>';
         block += itemAmnt;
         block += '</div></td>';
         block += '<td rowspan="2" style="font-size:14px;padding-right: 20px;">';
@@ -3502,7 +3502,7 @@ function buildShop(info) {
         block += '<tr><td><div id="downArrow_' + item.itemID + '" data-index="' + item.itemID + '" class="downArrow arrow"></div></td>';
         block += '</tr></tr>';
         if (i != info.items.length) {
-            block += '<tr><td colspan="6"><div style="width:650px; height:4px; background-image:url(../images/layout/spanner.png)"/></td></tr>';
+            block += '<tr><td colspan="6"><div style="width:650px; height:4px; background-image:url(images/layout/spanner.png)"/></td></tr>';
         } else {
             block += '</table>';
         }
@@ -3527,7 +3527,7 @@ function buildShop(info) {
             block += '<table style="display: inline-block; width:385px; padding-left: 20px;" class="Selling ' + type + '"><tr style="margin:10px;" ><td rowspan="2" style="width:60px;">';
             block += '<div id="itemSellImage' + item.itemID + '"';
             block += 'data-script="' + item.description + '" data-value="' + Math.floor(item.value / 3) + '" data-index="' + item.itemID + '" class="shopItems items" ';
-            block += 'style="background-image:url(../images/items/' + item.image + '.png)";>' + item.count;
+            block += 'style="background-image:url(images/items/' + item.image + '.png)";>' + item.count;
             block += '</div></td><td style="width:160px;">' + item.name + '</td>';
             block += '<td><div id="supArrow_' + item.itemID + '" class="upArrow arrow" data-index="' + item.itemID + '"></div></td>';
             block += '<td rowspan="2" style="font-size:12px;padding-left: 5px;text-align:right; width:124px;">';
@@ -3587,7 +3587,7 @@ function buildEquipShop() {
             block += '<tr style="margin:10px;"><td style="width:60px;">';
             block += '<div id="equipBuyImage_' + item.split('|')[0] + '"';
             block += 'data-script="' + item.split('|')[4] + '" data-price="' + item.split('|')[5] + '" data-index="' + item.split('|')[0] + '" class="equipmentShopItems" ';
-            block += 'style="background-image:url(../images/items/' + item.split('|')[2] + '.png)";>';
+            block += 'style="background-image:url(images/items/' + item.split('|')[2] + '.png)";>';
             block += '</div></td>';
             block += '<td style="font-size:14px;padding-right: 20px;width:140px;">';
             block += item.split('|')[1];
@@ -3611,7 +3611,7 @@ function buildEquipShop() {
             block += '<tr style="margin:10px;"><td rowspan="2" style="width:60px;">';
             block += '<div id="equipSellImage_' + item.split('|')[0] + '"';
             block += 'data-script="' + item.split('|')[4].split('"').join("'") + '" data-price="' + item.split('|')[6] + '" data-index="' + item.split('|')[0] + '" class="equipmentShopItems" ';
-            block += 'style="background-image:url(../images/items/' + item.split('|')[2] + '.png)";>';
+            block += 'style="background-image:url(images/items/' + item.split('|')[2] + '.png)";>';
             block += '</div></td>';
             block += '<td style="font-size:14px;padding-right: 20px;width:240px;">';
             if (item.split('|')[5].length == 1) {
@@ -3685,7 +3685,7 @@ function populateBestiry() {
                     text: chapter
                 }));
             }
-            block += "<div class='bestiry' data-chapter='" + chapter + "' data-map='" + map + "' data-zone='" + zone + "' id='card-" + enemy.split('|')[1] + "' data-monID='" + enemy.split('|')[1] + "' data-script='" + enemy.split('|')[6] + "' style='background-image:url(../images/portrits/" + enemy.split('|')[2] + ".png); background-Color:" + enemy.split('|')[8] + "'></div>"
+            block += "<div class='bestiry' data-chapter='" + chapter + "' data-map='" + map + "' data-zone='" + zone + "' id='card-" + enemy.split('|')[1] + "' data-monID='" + enemy.split('|')[1] + "' data-script='" + enemy.split('|')[6] + "' style='background-image:url(images/portrits/" + enemy.split('|')[2] + ".png); background-Color:" + enemy.split('|')[8] + "'></div>"
         }
         $('#besMonsters').html(block);
         hideExtraCards();
@@ -3766,7 +3766,7 @@ function generateSkillTree() {
                 $(this).attr("id", "skillTreeImage-" + skillIndex);
                 $(this).addClass('skillTreeSkill');
                 $(this).attr("data-skillID", skillIndex);
-                $(this).css("background-image", "url(../images/skills/" + skillList[skillIndex - 1].split("|")[2] + ".png)");
+                $(this).css("background-image", "url(images/skills/" + skillList[skillIndex - 1].split("|")[2] + ".png)");
                 $(this).attr("data-reqLevel", skillList[skillIndex - 1].split("|")[4]);
                 $(this).attr("data-parent", skillList[skillIndex - 1].split("|")[3]);
                 $(this).attr("data-parentB", skillList[skillIndex - 1].split("|")[7]);
@@ -3775,7 +3775,7 @@ function generateSkillTree() {
                 type = skillList[skillIndex - 1].split("|")[6];
                 $(this).attr("data-type", type);
                 $(this).html("<div data-max='" + skillList[skillIndex - 1].split("|")[5] + "' data-current=0 data-allocated=0 id='skillLevel-" + skillIndex + "' class='skillTreePoints'></div>");
-                $("#skillLevel-" + skillIndex).css("background-image", "url(../images/skills/dots/skillDots-" + skillList[skillIndex - 1].split("|")[5] + ".png)");
+                $("#skillLevel-" + skillIndex).css("background-image", "url(images/skills/dots/skillDots-" + skillList[skillIndex - 1].split("|")[5] + ".png)");
             } else if (template.split(",")[counter].split("|")[1] == 'e') { //empty
                 $(this).addClass("skillTreeBlock");
                 $(this).css("width", template.split(",")[counter].split("|")[0]);
@@ -3819,7 +3819,7 @@ function generateSkillTree() {
         skillImage = skillList[skillIndex - 1].split("|")[2];
         if (skillType == 1 || skillType == 3 || skillType == 6) {
             equipText = equipText + "<table style='width:250px;display:inline-block'><tr><td style='height: 52px;width: 52px;'><div class='skill equippableSkill' data-skillID='";
-            equipText = equipText + skillIndex + "' style='background-image:url(../images/skills/" + skillImage + ".png)'></div></td>";
+            equipText = equipText + skillIndex + "' style='background-image:url(images/skills/" + skillImage + ".png)'></div></td>";
             equipText = equipText + "<td style='padding-left:15px;font-size:18px;'>Level " + skillLevel + " " + skillName + "</td></tr></table>"
         }
     });
@@ -3872,11 +3872,11 @@ function generateSkillTree() {
             }
 
             useText = useText + "<table style=\"width:450px;display:inline-block\"><tr><td style=\"height: 52px;width: 52px;\"><div class=\"skill\" data-skillID=\"";
-            useText = useText + skillIndex + "\" data-script=\"" + script + "\" style=\"background-image:url(../images/skills/" + skillImage + ".png)\"></div></td>";
+            useText = useText + skillIndex + "\" data-script=\"" + script + "\" style=\"background-image:url(images/skills/" + skillImage + ".png)\"></div></td>";
             useText = useText + "<td style=\"padding-left:15px;font-size:18px;width:250px\">Level " + skillLevel + " " + skillName + "</td>"
-            useText = useText + "<td style=\"width:48px;\"><div data-script=\"" + script + "\" class=\"multiUse " + class1 + "\" data-use=\"1\" data-skillID=\"" + skillIndex + "\" style=\"background-image:url(../images/ui-buttons/use1.png)\"></div></td>"
-            useText = useText + "<td style=\"width:48px;\"><div data-script=\"" + script + "\" class=\"multiUse " + class5 + "\" data-use=\"5\" data-skillID=\"" + skillIndex + "\" style=\"background-image:url(../images/ui-buttons/use5.png)\"></div></td>"
-            useText = useText + "<td style=\"width:48px;\"><div data-script=\"" + script + "\" class=\"multiUse " + class25 + "\" data-use=\"25\" data-skillID=\"" + skillIndex + "\" style=\"background-image:url(../images/ui-buttons/use25.png)\"></div></td>"
+            useText = useText + "<td style=\"width:48px;\"><div data-script=\"" + script + "\" class=\"multiUse " + class1 + "\" data-use=\"1\" data-skillID=\"" + skillIndex + "\" style=\"background-image:url(images/ui-buttons/use1.png)\"></div></td>"
+            useText = useText + "<td style=\"width:48px;\"><div data-script=\"" + script + "\" class=\"multiUse " + class5 + "\" data-use=\"5\" data-skillID=\"" + skillIndex + "\" style=\"background-image:url(images/ui-buttons/use5.png)\"></div></td>"
+            useText = useText + "<td style=\"width:48px;\"><div data-script=\"" + script + "\" class=\"multiUse " + class25 + "\" data-use=\"25\" data-skillID=\"" + skillIndex + "\" style=\"background-image:url(images/ui-buttons/use25.png)\"></div></td>"
             useText = useText + "</tr></table>"
 
 
@@ -4023,7 +4023,7 @@ function buildAchievementPage() {
     var block = '';
     achievementList.forEach(function(entry) {
         block += "<div class='achievement' id='achievement-" + entry.split('|')[0] + "' data-script='" + entry.split('|')[3]
-        block += "' style='background-image:url(../images/achievements/" + entry.split('|')[2] + ".png);'></div>"
+        block += "' style='background-image:url(images/achievements/" + entry.split('|')[2] + ".png);'></div>"
     });
     $('#achievementDiv').html(block);
 }
@@ -4107,7 +4107,7 @@ function populateQuestLogDetail(data) {
             }else{
                 string = '<span style="color:green;"><strong>' + questInfo["amnt-" + i] + '/' + questInfo["amnt-" + i] + '</strong></span>'
             }
-            $('#reqD' + i + 'image').css("background-image", "url(../images/items/" + item.image + '.png)');
+            $('#reqD' + i + 'image').css("background-image", "url(images/items/" + item.image + '.png)');
 
             if(item.visible == 1){
                 $('#reqD' + i).html(item.name + " - " + string + " Collected");
@@ -4123,7 +4123,7 @@ function populateQuestLogDetail(data) {
         if(questInfo["reward-" + i] != 0){
             item = getInventoryJSONRecord(questInfo["reward-" + i]);
             $('#rewardD' + i + 'row').show();
-            $('#rewardD' + i + 'image').css("background-image", "url(../images/items/" + item.image + '.png)');
+            $('#rewardD' + i + 'image').css("background-image", "url(images/items/" + item.image + '.png)');
             $('#rewardD' + i).html(item.name + " - " + questInfo["rAmnt-" + i] + " Rewarded");
         } else {
             $('#rewardD' + i + 'row').hide();
@@ -4132,14 +4132,14 @@ function populateQuestLogDetail(data) {
 
     if (questInfo["expAmnt"] != 0) {
         $('#rewardDErow').show();
-        $('#rewardDEimage').css("background-image", "url(../images/items/misc/exp.png)");
+        $('#rewardDEimage').css("background-image", "url(images/items/misc/exp.png)");
         $('#rewardDEXP').html("Experience - " + formatNumber(questInfo["expAmnt"]) + " Rewarded");
     } else {
         $('#rewardDErow').hide();
     }
     if (questInfo["silverAmnt"] != 0) {
         $('#rewardDSrow').show();
-        $('#rewardDSimage').css("background-image", "url(../images/items/misc/silver.png)");
+        $('#rewardDSimage').css("background-image", "url(images/items/misc/silver.png)");
         $('#rewardDSilver').html("Silver - " + formatNumber(questInfo["silverAmnt"]) + " Rewarded");
     } else {
         $('#rewardDSrow').hide();
@@ -4271,7 +4271,7 @@ function populateStash() {
             invString = "<table class='stashTableEquips' id='item-" + itemID + "' data-row='" + itemID + "' style='float:left; width:100%;' data-type='"
             invString = invString + itemType + "' data-class='" + slot + "'><tr><td style='width: 40px;'><div data-script='" + script
             invString = invString + "' data-type='" + itemType + "' data-name='" + name + "' id='stashEquip-" + itemID + "' data-row='" + itemID
-            invString = invString + "' class='items' style='background-image:url(../images/items/" + image + ".png)'>"
+            invString = invString + "' class='items' style='background-image:url(images/items/" + image + ".png)'>"
             invString = invString + "</div></td><td style='font-size: 14px;'>" + name + "</td></tr></table>";
             if (stored == 0) {
                 leftString = leftString + invString;
@@ -4288,7 +4288,7 @@ function populateStash() {
                 invString = "<table class='stashTableItems' id='item-" + item.itemID + "' style='float:left; width:100%;' data-type='"
                 invString = invString + itemType + "'><tr><td style='width: 40px;'><div data-script='" + item.description
                 invString = invString + "' data-type='" + itemType + "' data-name='" + item.name + "' id='stashItem-" + item.itemID
-                invString = invString + "' class='items' style='background-image:url(../images/items/" + item.image + ".png)'>"
+                invString = invString + "' class='items' style='background-image:url(images/items/" + item.image + ".png)'>"
                 invString = invString + item.count + "</div></td><td style='font-size: 14px;'>" + item.name + "</td></tr></table>";
                 leftString = leftString + invString;
             }
@@ -4296,7 +4296,7 @@ function populateStash() {
                 invString = "<table class='stashTableItems' id='item-" + item.itemID + "' style='float:left; width:100%;' data-type='"
                 invString = invString + itemType + "'><tr><td style='width: 40px;'><div data-script='" + item.description
                 invString = invString + "' data-type='" + itemType + "' data-name='" + item.name + "' id='stashItem-" + item.itemID
-                invString = invString + "' class='items stash' style='background-image:url(../images/items/" + item.image + ".png)'>"
+                invString = invString + "' class='items stash' style='background-image:url(images/items/" + item.image + ".png)'>"
                 invString = invString + item.stored + "</div></td><td style='font-size: 14px;'>" + item.name + "</td></tr></table>";
                 rightString = rightString + invString;
             }
@@ -4327,10 +4327,10 @@ function itemPickerShow(callback){
 }
 function clearCrafting(){
 	$("#craftNowBtn").addClass("disabledButton");
-	$(".craftingSelector").css("background-image", "url(../images/items/usable/question.png");
+	$(".craftingSelector").css("background-image", "url(images/items/usable/question.png");
 	$(".craftingSelector").attr("data-id", "-1");
 	$(".craftingSelector").attr("data-uid", "-1");
-	$("#itemOutput").css("background-image", "url(../images/items/usable/question.png");
+	$("#itemOutput").css("background-image", "url(images/items/usable/question.png");
 	$("#itemOutputScript").html();
 	$("#craftSuccess").html("N/A");
 	$("#craftCost").html("N/A");

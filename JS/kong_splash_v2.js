@@ -20,7 +20,7 @@ function populateNews(newsJSON){
 	string = '';
 	string += '<table style="width:90%; margin: 15px auto 50px; color: aliceblue;"><tr><td style="width:50px;">'
 	string += '<div class="newsImageContainer" style="background-position:0 ' + newsJSON['imageOffset'] + 'px; background-image: '
-	string += 'url(../images/' + newsJSON['image'] + ')"></div></td>'
+	string += 'url(images/' + newsJSON['image'] + ')"></div></td>'
 	string += '<td><div style="height:48px; line-height:48px; display:inline-block;font-size:20px;">'+newsJSON['title']+ '</div></td><td><div style="float:right;font-size:12px;">'
 	string += newsJSON['date'] + '</div></td></tr>'
 	string += '<tr><td colspan=3><div style="width:100%; font-size:16px;">' + newsJSON['update'] + '</div></td></tr></table>'
