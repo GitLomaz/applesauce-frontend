@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 	$('#splash-login').click(function(){
 		if($("#splash-login").html() == "Start"){
-			window.location.replace('kong_main.html');
+			window.location.replace('main.html');
 		}
 	});
 });

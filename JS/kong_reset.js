@@ -97,7 +97,7 @@ function rebirth(){
 function refresh(result){
 	console.log(result);
 	if(result == 1){
-		window.location.replace('kong_main.html');
+		window.location.replace('main.html');
 	}
 }
 function saveCookie(){
