@@ -1,4 +1,4 @@
-var kongregate = parent.kongregate;
+var kongregate = null; // parent.kongregate;
 var itemList = JSON.parse(localStorage.getItem('itemInfo')); //List of every item in the game
 var skillList = JSON.parse(localStorage.getItem('skillInfo')); //List of every item in the game
 var skillLevels = JSON.parse(localStorage.getItem('skillLevels')); //List of every item in the game
