@@ -2650,7 +2650,8 @@ function locationStore(code) {
     //                Stores the location, if the session is invalid, forces a logout
     //  --------------------------------------------------------------------------------------------------
     if (code == 'error! Invalid Session') {
-        window.location.replace('kong_splash.html');
+        console.log("Invalid session, logging out");
+        // window.location.replace('kong_splash.html');
     } else if (code > 0) {
         ajaxCall("json", "checkCombat");
     }
