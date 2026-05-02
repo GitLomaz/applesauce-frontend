@@ -4351,7 +4351,7 @@ function updateInventoryJSON(index, field, value){
 function getInventoryJSONRecord(index){
     var ret;
     $.each(inventoryJSON,function(i,v){
-        if (v.itemID == index){
+        if (v.itemID == index || v.itemid == index){
             ret = v;
             return false;
         }
