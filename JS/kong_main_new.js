@@ -2702,27 +2702,27 @@ function populateQuestPage(data) {
         $('#dailyQuestPanel').removeClass("medDailyQuestPanel");
         $('#dailyAccept').hide();
         $('#dailyInnerDiv').show();
-        if (questInfo.questID == 27) {
+        if ((questInfo.questID ?? questInfo.questid) == 27) {
             $('#day2').addClass("dailyLocked");
             $('#day3').addClass("dailyLocked");
             $('#day4').addClass("dailyLocked");
             $('#day5').addClass("dailyLocked");
-        } else if (questInfo.questID == 28) {
+        } else if ((questInfo.questID ?? questInfo.questid) == 28) {
             $('#day1').addClass("dailyDone");
             $('#day3').addClass("dailyLocked");
             $('#day4').addClass("dailyLocked");
             $('#day5').addClass("dailyLocked");
-        } else if (questInfo.questID == 29) {
+        } else if ((questInfo.questID ?? questInfo.questid) == 29) {
             $('#day1').addClass("dailyDone");
             $('#day2').addClass("dailyDone");
             $('#day4').addClass("dailyLocked");
             $('#day5').addClass("dailyLocked");
-        } else if (questInfo.questID == 30) {
+        } else if ((questInfo.questID ?? questInfo.questid) == 30) {
             $('#day1').addClass("dailyDone");
             $('#day2').addClass("dailyDone");
             $('#day3').addClass("dailyDone");
             $('#day5').addClass("dailyLocked");
-        } else if (questInfo.questID == 31) {
+        } else if ((questInfo.questID ?? questInfo.questid) == 31) {
             $('#day1').addClass("dailyDone");
             $('#day2').addClass("dailyDone");
             $('#day3').addClass("dailyDone");
@@ -2847,7 +2847,7 @@ function populateQuestPage(data) {
         $("#questWrapper").children().show();
         $('#questLoading').hide();
         questInfo = (JSON.parse(data));
-        $('#questLeft').attr("data-id", questInfo.questID);
+        $('#questLeft').attr("data-id", questInfo.questID ?? questInfo.questid);
         if (questInfo.status == null) { //NOT STARTED
             dailyComplete = 'false';
             $('#questAccept').show();
@@ -4088,7 +4088,7 @@ function populateQuestLogDetail(data) {
     $('#questDetailsLoading').hide();
     $('#questDetailsWrapper').show();
     questInfo = (JSON.parse(data));
-    $('#questDetailsLeft').attr("data-id", questInfo.questID);
+    $('#questDetailsLeft').attr("data-id", questInfo.questID ?? questInfo.questid);
     if (questInfo.status == "working") {
         $('#questDetailsText').html(questInfo.startText);
     }else{
