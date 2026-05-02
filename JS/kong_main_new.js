@@ -215,7 +215,7 @@ $(document).ready(function() {
             try{
                 slot.css("background-image", "url(images/items/" + inventoryJSON[ret].image + ".png)")
                 slot.attr("data-uid", ret);
-                slot.attr("data-id", inventoryJSON[ret].itemID);
+                slot.attr("data-id", inventoryJSON[ret].itemid);
                 slot.attr("data-equip", inventoryJSON[ret]["equipment"]);
                 var complete = true;
                 JObject = [];
@@ -466,7 +466,7 @@ $(document).ready(function() {
             itemList = (list.substring(0, list.length - 1).split("-"));
             $(itemList).each(function(i,v){
                 item = getInventoryJSONRecord(v.split("|")[0])
-                updateInventoryJSON(item.itemID, "count", item.count - v.split("|")[1]);
+                updateInventoryJSON(item.itemid, "count", item.count - v.split("|")[1]);
             });
             populateInv();
             populateStash();
@@ -492,7 +492,7 @@ $(document).ready(function() {
             itemList = (list.substring(0, list.length - 1).split("-"));
             $(itemList).each(function(i,v){
                 item = getInventoryJSONRecord(v.split("|")[0])
-                updateInventoryJSON(item.itemID, "count", +item.count + +v.split("|")[1]);
+                updateInventoryJSON(item.itemid, "count", +item.count + +v.split("|")[1]);
             });
             populateInv();
             populateStash();
@@ -730,9 +730,9 @@ $(document).ready(function() {
             if ($(this).hasClass("clickedImage")) {
                 if (filter == 1) {
                     item = getInventoryJSONRecord($(this).attr('data-id'));
-                    if (init_equips.indexOf(item.itemID) == -1) {
-                        init_equips[init_equips.indexOf("-1")] = item.itemID;
-                        if (init_equips.indexOf(item.itemID) == -1) {
+                    if (init_equips.indexOf(item.itemid) == -1) {
+                        init_equips[init_equips.indexOf("-1")] = item.itemid;
+                        if (init_equips.indexOf(item.itemid) == -1) {
                             $('#invHeader').html('<span style="color:red;">You must remove something before equipping this!</span>');
                             $("#invHeader").show().delay(2000).fadeOut('slow');
                         } else {
@@ -744,7 +744,7 @@ $(document).ready(function() {
                         $("#invHeader").show().delay(2000).fadeOut('slow');
                     }
                     $(this).removeClass("clickedImage");
-                    ajaxCall("text", "equipItem", item.itemID, "t");
+                    ajaxCall("text", "equipItem", item.itemid, "t");
                     populateEquip();
                 }
             } else {
@@ -760,14 +760,14 @@ $(document).ready(function() {
             if ($(this).hasClass("clickedMulti")) {
                 useageAmnt = $(this).attr("data-use");
                 item = getInventoryJSONRecord($(this).attr('data-itemid'))
-                updateInventoryJSON(item.itemID, "count", item.count - useageAmnt);
+                updateInventoryJSON(item.itemid, "count", item.count - useageAmnt);
 
-                $("#usable-" + item.itemID).html(item.count);
-                if ($("#usable-" + item.itemID).html() == '0') {
-                    $("#usable-" + item.itemID).remove();
+                $("#usable-" + item.itemid).html(item.count);
+                if ($("#usable-" + item.itemid).html() == '0') {
+                    $("#usable-" + item.itemid).remove();
                 }
 
-                ajaxCall("JSON", "useItem", item.itemID, useageAmnt);
+                ajaxCall("JSON", "useItem", item.itemid, useageAmnt);
                 $(this).removeClass("clickedMulti");
                 $('div.items, div.multiUseItem').addClass("disabledButton");
             } else {
@@ -817,13 +817,13 @@ $(document).ready(function() {
 
 
         if ($(this).hasClass("stash")) {
-            updateInventoryJSON(item.itemID, "stored", 0);
-            updateInventoryJSON(item.itemID, "count", count + stored);
-            ajaxCall("text", "unstashItem", item.itemID);
+            updateInventoryJSON(item.itemid, "stored", 0);
+            updateInventoryJSON(item.itemid, "count", count + stored);
+            ajaxCall("text", "unstashItem", item.itemid);
         } else {
-            updateInventoryJSON(item.itemID, "count", 0);
-            updateInventoryJSON(item.itemID, "stored", count + stored);
-            ajaxCall("text", "stashItem", item.itemID);
+            updateInventoryJSON(item.itemid, "count", 0);
+            updateInventoryJSON(item.itemid, "stored", count + stored);
+            ajaxCall("text", "stashItem", item.itemid);
         }
 
         populateStash();
@@ -2267,9 +2267,9 @@ function populateInv() {
     $.each(inventoryJSON, function(i, item) {
         if(item.equipment == 0 && item.visible == 1 && item.count > 0){
             itemType = item.usable + '|' + item.combat + '|' + item.quest + '|0';
-            invString = invString + "<table id='item-" + item.itemID + "' style='float:left; width:33%;' data-type='"
+            invString = invString + "<table id='item-" + item.itemid + "' style='float:left; width:33%;' data-type='"
             invString = invString + itemType + "'><tr><td style='width: 40px;'><div data-script='" + item.description
-            invString = invString + "' data-type='" + itemType + "' data-id=" + item.itemID + " data-name='" + item.name + "' id='itemImage" + item.itemID
+            invString = invString + "' data-type='" + itemType + "' data-id=" + item.itemid + " data-name='" + item.name + "' id='itemImage" + item.itemid
             invString = invString + "' class='items' style='background-image:url(images/items/" + item.image + ".png)'>"
             invString = invString + item.count + "</div></td><td style='font-size: 14px;'>" + item.name + "</td></tr></table>";
         }
@@ -2281,24 +2281,24 @@ function populateInv() {
 
             multiUseBlacklist = [1, 85, 89, 90, 91, 93, 108, 109, 110, 111, 112, 113, 114, 115, 127, 128, 129, 130, 119, 120, 236, 237, 238, 239]
 
-            if (item.count >= 5 && multiUseBlacklist.indexOf(parseInt(item.itemID)) == -1) {
+            if (item.count >= 5 && multiUseBlacklist.indexOf(parseInt(item.itemid)) == -1) {
                 class5 = 'multiUseItem';
             } else {
                 class5 = 'notEnoughMana';
             }
 
-            if (item.count >= 25 && multiUseBlacklist.indexOf(parseInt(item.itemID)) == -1) {
+            if (item.count >= 25 && multiUseBlacklist.indexOf(parseInt(item.itemid)) == -1) {
                 class25 = 'multiUseItem';
             } else {
                 class25 = 'notEnoughMana';
             }
 
             usableString = usableString + "<table style=\"width:370px;display:inline-block;padding-right:15px;\"><tr><td style=\"height: 52px;width: 52px;\"><div class=\"items forceCursor\" data-ItemID=\"";
-            usableString = usableString + item.itemID + "\" data-script=\"" + item.description.replace("'", "&#39;") + "\" id=\"usable-" + item.itemID + "\" style=\"background-image:url(images/items/" + item.image + ".png)\">" + item.count + "</div></td>";
+            usableString = usableString + item.itemid + "\" data-script=\"" + item.description.replace("'", "&#39;") + "\" id=\"usable-" + item.itemid + "\" style=\"background-image:url(images/items/" + item.image + ".png)\">" + item.count + "</div></td>";
             usableString = usableString + "<td style=\"padding-left:15px;font-size:14px;width:180px\">" + item.name + "</td>"
-            usableString = usableString + "<td style=\"width:48px;\"><div data-script=\"" + item.description.replace("'", "&#39;") + "\" class=\"multiUse " + class1 + "\" data-use=\"1\" data-itemID=\"" + item.itemID + "\" style=\"background-image:url(images/ui-buttons/use1.png)\"></div></td>"
-            usableString = usableString + "<td style=\"width:48px;\"><div data-script=\"" + item.description.replace("'", "&#39;") + "\" class=\"multiUse " + class5 + "\" data-use=\"5\" data-itemID=\"" + item.itemID + "\" style=\"background-image:url(images/ui-buttons/use5.png)\"></div></td>"
-            usableString = usableString + "<td style=\"width:48px;\"><div data-script=\"" + item.description.replace("'", "&#39;") + "\" class=\"multiUse " + class25 + "\" data-use=\"25\" data-itemID=\"" + item.itemID + "\" style=\"background-image:url(images/ui-buttons/use25.png)\"></div></td>"
+            usableString = usableString + "<td style=\"width:48px;\"><div data-script=\"" + item.description.replace("'", "&#39;") + "\" class=\"multiUse " + class1 + "\" data-use=\"1\" data-itemID=\"" + item.itemid + "\" style=\"background-image:url(images/ui-buttons/use1.png)\"></div></td>"
+            usableString = usableString + "<td style=\"width:48px;\"><div data-script=\"" + item.description.replace("'", "&#39;") + "\" class=\"multiUse " + class5 + "\" data-use=\"5\" data-itemID=\"" + item.itemid + "\" style=\"background-image:url(images/ui-buttons/use5.png)\"></div></td>"
+            usableString = usableString + "<td style=\"width:48px;\"><div data-script=\"" + item.description.replace("'", "&#39;") + "\" class=\"multiUse " + class25 + "\" data-use=\"25\" data-itemID=\"" + item.itemid + "\" style=\"background-image:url(images/ui-buttons/use25.png)\"></div></td>"
             usableString = usableString + "</tr></table>"
         }
     })
@@ -2406,7 +2406,7 @@ function populatePicker() {
 
     $.each(inventoryJSON, function(i, item) {
         if((item.archived != 1 && item.equipment == 1 && item.count > 0 && item.equipped == 0) || (item.equipment == 0 && item.count > 0 && item.quest == 0)){
-            pickerString = pickerString + "<table id='picker-" + item.itemID + "' style='float:left; width:33%;'><tr><td style='width: 40px;'><div data-equip=0"
+            pickerString = pickerString + "<table id='picker-" + item.itemid + "' style='float:left; width:33%;'><tr><td style='width: 40px;'><div data-equip=0"
             pickerString = pickerString + "' class='pickerItems' data-name='" + item.name + "' data-uid=" + i + " style='background-image:url(images/items/" + item.image + ".png)'>"
             pickerString = pickerString + item.count + "</div></td><td style='font-size: 14px;'>" + item.name + "</td></tr></table>";
         }
@@ -3052,7 +3052,7 @@ function populateCombatLog(log, status = 0) {
             $("#combatItem-" + (counter + 1)).addClass("combatIcons");
             $("#combatItem-" + (counter + 1)).html(item.count);
             $("#combatItem-" + (counter + 1)).css("opacity", "");
-            $("#combatItem-" + (counter + 1)).data("id", item.itemID);
+            $("#combatItem-" + (counter + 1)).data("id", item.itemid);
             $("#combatItem-" + (counter + 1)).attr("data-script", item.description);
         } else {
             $("#combatItem-" + (counter + 1)).removeClass("combatIcons");
@@ -3472,7 +3472,7 @@ function buildShop(info) {
     $.each(info.items,function(i,item){
         itemAmnt = 0
         try{
-            itemAmnt = getInventoryJSONRecord(item.itemID).count;
+            itemAmnt = getInventoryJSONRecord(item.itemid).count;
         }catch (err){
 
         }
@@ -3486,8 +3486,8 @@ function buildShop(info) {
         type = type.substring(0, type.length - 1);
 
         block += '<tr style="margin:10px;"><td rowspan="2" style="width:60px;">';
-        block += '<div id="itemBuyImage' + item.itemID + '"';
-        block += 'data-script="' + item.description + '" data-price="' + item.value + '" data-index="' + item.itemID + '" class="shopItems items" ';
+        block += '<div id="itemBuyImage' + item.itemid + '"';
+        block += 'data-script="' + item.description + '" data-price="' + item.value + '" data-index="' + item.itemid + '" class="shopItems items" ';
         block += 'style="background-image:url(images/items/' + item.image + '.png)";>';
         block += itemAmnt;
         block += '</div></td>';
@@ -3495,12 +3495,12 @@ function buildShop(info) {
         block += item.name;
         block += '</td><td rowspan="2">';
         block += "Type: " + type;
-        block += '</td><td><div id="upArrow_' + item.itemID + '" class="upArrow arrow" data-index="' + item.itemID + '"></div></td>';
+        block += '</td><td><div id="upArrow_' + item.itemid + '" class="upArrow arrow" data-index="' + item.itemid + '"></div></td>';
         block += '<td rowspan="2" style="font-size:16px;padding-left: 5px;text-align:right; width:170px;">';
-        block += '<span id=itemBuyCount_' + item.itemID + '>0</span>ea X ';
-        block += '<span id=itemvalue_' + item.itemID + '>' + formatNumber(item.value) + '</span>&#438 = ';
-        block += '<span id=itemTotal_' + item.itemID + '>0</span>&#438</td>';
-        block += '<tr><td><div id="downArrow_' + item.itemID + '" data-index="' + item.itemID + '" class="downArrow arrow"></div></td>';
+        block += '<span id=itemBuyCount_' + item.itemid + '>0</span>ea X ';
+        block += '<span id=itemvalue_' + item.itemid + '>' + formatNumber(item.value) + '</span>&#438 = ';
+        block += '<span id=itemTotal_' + item.itemid + '>0</span>&#438</td>';
+        block += '<tr><td><div id="downArrow_' + item.itemid + '" data-index="' + item.itemid + '" class="downArrow arrow"></div></td>';
         block += '</tr></tr>';
         if (i != info.items.length) {
             block += '<tr><td colspan="6"><div style="width:650px; height:4px; background-image:url(images/layout/spanner.png)"/></td></tr>';
@@ -3526,17 +3526,17 @@ function buildShop(info) {
                 type += 'Misc';
             }
             block += '<table style="display: inline-block; width:385px; padding-left: 20px;" class="Selling ' + type + '"><tr style="margin:10px;" ><td rowspan="2" style="width:60px;">';
-            block += '<div id="itemSellImage' + item.itemID + '"';
-            block += 'data-script="' + item.description + '" data-value="' + Math.floor(item.value / 3) + '" data-index="' + item.itemID + '" class="shopItems items" ';
+            block += '<div id="itemSellImage' + item.itemid + '"';
+            block += 'data-script="' + item.description + '" data-value="' + Math.floor(item.value / 3) + '" data-index="' + item.itemid + '" class="shopItems items" ';
             block += 'style="background-image:url(images/items/' + item.image + '.png)";>' + item.count;
             block += '</div></td><td style="width:160px;">' + item.name + '</td>';
-            block += '<td><div id="supArrow_' + item.itemID + '" class="upArrow arrow" data-index="' + item.itemID + '"></div></td>';
+            block += '<td><div id="supArrow_' + item.itemid + '" class="upArrow arrow" data-index="' + item.itemid + '"></div></td>';
             block += '<td rowspan="2" style="font-size:12px;padding-left: 5px;text-align:right; width:124px;">';
-            block += '<span id=itemSellCount_' + item.itemID + '>0</span>ea X ';
-            block += '<span id=itemSellvalue_' + item.itemID + '>' + formatNumber(Math.floor(item.value / 3)) + '</span>&#438 = ';
-            block += '<span id=itemSellTotal_' + item.itemID + '>0</span>&#438</td>';
-            block += '</tr><tr><td style="width:160px;">Resell Value: <span id="sellValue_' + item.itemID + '">' + formatNumber(Math.floor(item.value / 3)) + '</span>&#438</td>';
-            block += '<td><div id="sdownArrow_' + item.itemID + '" data-index="' + item.itemID + '" class="downArrow arrow"></div></td></tr>';
+            block += '<span id=itemSellCount_' + item.itemid + '>0</span>ea X ';
+            block += '<span id=itemSellvalue_' + item.itemid + '>' + formatNumber(Math.floor(item.value / 3)) + '</span>&#438 = ';
+            block += '<span id=itemSellTotal_' + item.itemid + '>0</span>&#438</td>';
+            block += '</tr><tr><td style="width:160px;">Resell Value: <span id="sellValue_' + item.itemid + '">' + formatNumber(Math.floor(item.value / 3)) + '</span>&#438</td>';
+            block += '<td><div id="sdownArrow_' + item.itemid + '" data-index="' + item.itemid + '" class="downArrow arrow"></div></td></tr>';
             block += '</tr></table>';
         }
     });
@@ -4286,17 +4286,17 @@ function populateStash() {
         if(item.visible == 1 && item.equipment != "1"){
             itemType = item.usable + '|' + item.combat + '|' + item.quest + '|0';
             if (item.count > 0) {
-                invString = "<table class='stashTableItems' id='item-" + item.itemID + "' style='float:left; width:100%;' data-type='"
+                invString = "<table class='stashTableItems' id='item-" + item.itemid + "' style='float:left; width:100%;' data-type='"
                 invString = invString + itemType + "'><tr><td style='width: 40px;'><div data-script='" + item.description
-                invString = invString + "' data-type='" + itemType + "' data-name='" + item.name + "' id='stashItem-" + item.itemID
+                invString = invString + "' data-type='" + itemType + "' data-name='" + item.name + "' id='stashItem-" + item.itemid
                 invString = invString + "' class='items' style='background-image:url(images/items/" + item.image + ".png)'>"
                 invString = invString + item.count + "</div></td><td style='font-size: 14px;'>" + item.name + "</td></tr></table>";
                 leftString = leftString + invString;
             }
             if (item.stored > 0) {
-                invString = "<table class='stashTableItems' id='item-" + item.itemID + "' style='float:left; width:100%;' data-type='"
+                invString = "<table class='stashTableItems' id='item-" + item.itemid + "' style='float:left; width:100%;' data-type='"
                 invString = invString + itemType + "'><tr><td style='width: 40px;'><div data-script='" + item.description
-                invString = invString + "' data-type='" + itemType + "' data-name='" + item.name + "' id='stashItem-" + item.itemID
+                invString = invString + "' data-type='" + itemType + "' data-name='" + item.name + "' id='stashItem-" + item.itemid
                 invString = invString + "' class='items stash' style='background-image:url(images/items/" + item.image + ".png)'>"
                 invString = invString + item.stored + "</div></td><td style='font-size: 14px;'>" + item.name + "</td></tr></table>";
                 rightString = rightString + invString;
