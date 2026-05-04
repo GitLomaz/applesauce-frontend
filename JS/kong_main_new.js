@@ -731,7 +731,7 @@ $(document).ready(function() {
                 if (filter == 1) {
                     item = getInventoryJSONRecord($(this).attr('data-id'));
                     if (init_equips.indexOf(item.itemid) == -1) {
-                        init_equips[init_equips.indexOf("-1")] = item.itemid;
+                        init_equips[init_equips.indexOf(-1)] = item.itemid;
                         if (init_equips.indexOf(item.itemid) == -1) {
                             $('#invHeader').html('<span style="color:red;">You must remove something before equipping this!</span>');
                             $("#invHeader").show().delay(2000).fadeOut('slow');
